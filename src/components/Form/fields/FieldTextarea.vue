@@ -37,7 +37,7 @@
 		/>
 		<div class="pkpFormField__control">
 			<textarea
-				class="pkpFormField__input pkpFormField--textarea__input"
+				class="form-control"
 				v-model="currentValue"
 				:id="controlId"
 				:name="localizedName"

@@ -2,12 +2,12 @@
 	<div v-if="locales.length" class="pkpFormLocales">
 		<button
 			v-for="locale in additionalLocales"
-			class="pkpFormLocales__locale"
+			class=""
 			type="button"
 			:key="locale.key"
 			:label="locale.label"
 			:class="{
-				'pkpFormLocales__locale--isActive': visible.includes(locale.key)
+				'form-control': visible.includes(locale.key)
 			}"
 			@click.prevent="toggleLocale(locale.key)"
 		>

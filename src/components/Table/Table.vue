@@ -1,68 +1,70 @@
 <template>
-	<table
-		class="table"
-		role="grid"
-		:aria-labelledBy="labelledBy ? labelledBy : false"
-		:aria-describedBy="describedBy ? describedBy : false"
-	>
-		<caption v-if="label || description">
-			<div v-if="label" class="pkpTable__label">{{ label }}</div>
-			<div
-				v-if="description"
-				class="pkpTable__description"
-				v-html="description"
-			/>
-		</caption>
-		<thead>
-			<tr>
-				<th
-					v-for="column in columns"
-					:key="column.name"
-					scope="col"
-					:aria-sort="!!column.orderBy"
-					:class="{'-isActive': orderBy === column.orderBy}"
-				>
-					<button v-if="column.orderBy" @click="setOrderBy(column)">
-						{{ column.label }}
-						<icon
-							:icon="getIconDirection(column) ? 'caret-down' : 'caret-up'"
-							class="pkpTable__sortIcon"
-						/>
-					</button>
-					<template v-else>
-						{{ column.label }}
-					</template>
-					<slot :name="'thead-' + column.name" :column="column" />
-				</th>
-			</tr>
-		</thead>
-		<tbody
-			@keydown.35.ctrl.exact.prevent="focusEnd"
-			@keydown.36.ctrl.exact.prevent="focusStart"
-			@keydown.35.exact.prevent="focusLastCell"
-			@keydown.36.exact.prevent="focusFirstCell"
-			@keydown.left.exact.prevent="focusPreviousCell"
-			@keydown.up.exact.prevent="focusPreviousRow"
-			@keydown.right.exact.prevent="focusNextCell"
-			@keydown.down.exact.prevent="focusNextRow"
+	<div class="table-responsive">
+		<table
+			class="table"
+			role="grid"
+			:aria-labelledBy="labelledBy ? labelledBy : false"
+			:aria-describedBy="describedBy ? describedBy : false"
 		>
-			<tr
-				v-for="(row, rowIndex) in rows"
-				:key="'row' + rowIndex"
-				class="pkpTable__row"
-			>
-				<slot :row="row" :rowIndex="rowIndex">
-					<table-cell
-						v-for="(column, columnIndex) in columns"
+			<caption v-if="label || description">
+				<div v-if="label" class="pkpTable__label">{{ label }}</div>
+				<div
+					v-if="description"
+					class="pkpTable__description"
+					v-html="description"
+				/>
+			</caption>
+			<thead>
+				<tr>
+					<th
+						v-for="column in columns"
 						:key="column.name"
-						:column="column"
-						:row="row"
-						:tabindex="!rowIndex && !columnIndex ? 0 : -1"
-					></table-cell>
-				</slot>
-			</tr>
-		</tbody>
-	</table>
+						scope="col"
+						:aria-sort="!!column.orderBy"
+						:class="{'-isActive': orderBy === column.orderBy}"
+					>
+						<button v-if="column.orderBy" @click="setOrderBy(column)">
+							{{ column.label }}
+							<icon
+								:icon="getIconDirection(column) ? 'caret-down' : 'caret-up'"
+								class=""
+							/>
+						</button>
+						<template v-else>
+							{{ column.label }}
+						</template>
+						<slot :name="'thead-' + column.name" :column="column" />
+					</th>
+				</tr>
+			</thead>
+			<tbody
+				@keydown.35.ctrl.exact.prevent="focusEnd"
+				@keydown.36.ctrl.exact.prevent="focusStart"
+				@keydown.35.exact.prevent="focusLastCell"
+				@keydown.36.exact.prevent="focusFirstCell"
+				@keydown.left.exact.prevent="focusPreviousCell"
+				@keydown.up.exact.prevent="focusPreviousRow"
+				@keydown.right.exact.prevent="focusNextCell"
+				@keydown.down.exact.prevent="focusNextRow"
+			>
+				<tr
+					v-for="(row, rowIndex) in rows"
+					:key="'row' + rowIndex"
+					class="pkpTable__row"
+				>
+					<slot :row="row" :rowIndex="rowIndex">
+						<table-cell
+							v-for="(column, columnIndex) in columns"
+							:key="column.name"
+							:column="column"
+							:row="row"
+							:tabindex="!rowIndex && !columnIndex ? 0 : -1"
+						></table-cell>
+					</slot>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </template>
 
 <script>

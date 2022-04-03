@@ -1,19 +1,16 @@
 <template>
-	<div class="pkpSearch">
-		<label>
+	<div class="row">
+		<div class="col-sm-12">
 			<span class="-screenReader">{{ currentSearchLabel }}</span>
 			<input
 				type="search"
-				class="pkpSearch__input"
+				class="form-control"
 				@keyup="searchPhraseKeyUp"
 				:id="inputId"
 				:value="searchPhrase"
 				:placeholder="currentSearchLabel"
 			/>
-			<span class="pkpSearch__icons">
-				<icon icon="search" :inline="true" class="pkpSearch__icons--search" />
-			</span>
-		</label>
+		</div>
 		<button
 			class="pkpSearch__clear"
 			v-if="searchPhrase"

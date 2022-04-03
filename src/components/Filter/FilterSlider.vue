@@ -1,12 +1,12 @@
 <template>
 	<div class="pkpFilter pkpFilter--slider" :class="classes">
-		<button v-if="isFilterActive" class="pkpFilter__remove" @click="remove">
+		<button v-if="isFilterActive" class="btn btn-primary" @click="remove">
 			<icon icon="times-circle-o" />
 			<span class="-screenReader">
 				{{ __('common.filterRemove', {filterTitle: title}) }}
 			</span>
 		</button>
-		<button v-else class="pkpFilter__add" @click="enable">
+		<button v-else class="btn btn-primary" @click="enable">
 			<icon icon="plus-square-o" />
 			<span class="-screenReader">
 				{{ __('common.filterAdd', {filterTitle: title}) }}
@@ -16,9 +16,10 @@
 			{{ title }}
 		</div>
 		<div class="pkpFilter__input pkpFilter__input--slider">
-			<label class="-screenReader" for="slider">{{ title }}</label>
+			<label class="label" for="slider">{{ title }}</label>
 			<input
 				type="range"
+				class="form-control"
 				:max="max"
 				:min="min"
 				:disabled="!isFilterActive"

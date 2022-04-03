@@ -42,7 +42,7 @@
 			/>
 			<pkp-button
 				v-if="pattern && canGenerateId && !currentValue"
-				class="pkpFormField--pubid__button"
+				class="form-control"
 				@click="assignId"
 			>
 				{{ assignIdLabel }}

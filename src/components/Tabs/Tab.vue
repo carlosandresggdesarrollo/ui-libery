@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="pkpTab"
+		class="container"
 		:class="classes"
 		role="tabpanel"
 		:id="id"

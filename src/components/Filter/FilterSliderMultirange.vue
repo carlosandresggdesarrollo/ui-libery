@@ -6,7 +6,7 @@
 				{{ __('filterRemove', {filterTitle: title}) }}
 			</span>
 		</button>
-		<button v-else class="pkpFilter__add" @click="enable">
+		<button v-else class="btn btn-primary" @click="enable">
 			<icon icon="plus-square-o" />
 			<span class="-screenReader">
 				{{ __('filterAdd', {filterTitle: title}) }}
@@ -25,10 +25,11 @@
 		>
 			<legend class="-screenReader">{{ title }}</legend>
 			<div class="pkpFilter__multirangeInput">
-				<label class="-screenReader" for="sliderMore">
+				<label class="label" for="sliderMore">
 					{{ moreThanLabel }}
 				</label>
 				<input
+					class="form-control"
 					type="range"
 					:max="moreThanMax"
 					:min="min"
@@ -42,6 +43,7 @@
 					{{ lessThanLabel }}
 				</label>
 				<input
+					class="form-control"
 					type="range"
 					:max="max"
 					:min="lessThanMin"

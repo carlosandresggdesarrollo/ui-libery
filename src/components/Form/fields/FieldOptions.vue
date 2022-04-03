@@ -62,7 +62,7 @@
 					-->
 					<input
 						v-if="type === 'checkbox'"
-						class="pkpFormField--options__input"
+						class="form-controlt"
 						v-model="selectedValue"
 						:value="option.value"
 						type="checkbox"
@@ -73,7 +73,7 @@
 					/>
 					<input
 						v-else
-						class="pkpFormField--options__input"
+						class="form-control"
 						v-model="selectedValue"
 						:value="option.value"
 						type="radio"

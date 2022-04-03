@@ -1,11 +1,11 @@
 <template>
-	<div class="pkpTabs" :class="{'pkpTabs--side -pkpClearfix': isSideTabs}">
+	<nav class="nav justify-content-cente" :class="{'': isSideTabs}">
 		<div class="pkpTabs__buttons" role="tablist" :aria-label="label">
 			<button
 				v-for="tab in tabs"
 				:aria-selected="currentTab === tab.id"
 				:aria-controls="tab.id"
-				class="pkpTabs__button"
+				class="btn btn-outline-dark"
 				:id="tab.id + '-button'"
 				:key="tab.id"
 				:ref="'button' + tab.id"
@@ -30,7 +30,7 @@
 			</button>
 		</div>
 		<slot />
-	</div>
+	</nav>
 </template>
 
 <script>

@@ -2,14 +2,14 @@
 	<div :class="classes">
 		<button
 			@click.prevent.stop="toggle(param, value)"
-			class="pkpFilter__label"
+			class="btn btn-primary"
 			:class="{'-isActive': isFilterActive}"
 		>
 			{{ title }}
 		</button>
 		<button
 			v-if="isFilterActive"
-			class="pkpFilter__remove"
+			class="btn btn-primary"
 			@click.prevent.stop="remove(param, value)"
 		>
 			<icon icon="times-circle-o" />

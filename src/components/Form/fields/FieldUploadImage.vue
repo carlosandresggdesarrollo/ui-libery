@@ -107,7 +107,7 @@
 				<div class="pkpFormField--upload__uploadActions">
 					<!-- keyboard-accessible file upload -->
 					<pkp-button
-						class="pkpFormField--upload__addFile"
+						class="form-control"
 						:disabled="!!uploadFile"
 						:id="dropzoneClickableId"
 					>
@@ -115,7 +115,7 @@
 					</pkp-button>
 					<pkp-button
 						v-if="initialValue && !isInitialValue"
-						class="pkpFormField--upload__restore"
+						class="form-control"
 						@click="revert"
 					>
 						{{ restoreLabel }}

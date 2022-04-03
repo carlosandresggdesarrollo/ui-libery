@@ -1,5 +1,5 @@
 <template>
-	<label :for="controlId" class="pkpFormFieldLabel">
+	<label :for="controlId" class="label">
 		<template v-if="localeLabel">
 			<span class="aria-hidden">{{ localeLabel }}</span>
 			<span class="-screenReader">{{ multilingualLabel }}</span>

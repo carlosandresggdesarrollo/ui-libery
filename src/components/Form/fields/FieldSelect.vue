@@ -38,7 +38,7 @@
 			}"
 		>
 			<select
-				class="pkpFormField__input pkpFormField--select__input"
+				class="form-control"
 				v-model="currentValue"
 				:id="controlId"
 				:name="localizedName"

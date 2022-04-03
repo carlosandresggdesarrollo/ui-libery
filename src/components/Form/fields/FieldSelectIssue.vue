@@ -34,7 +34,7 @@
 				<pkp-button
 					v-if="button"
 					v-bind="button"
-					class="pkpFormField--selectIssue__button"
+					class="form-control"
 					@click="emitGlobal(button.event)"
 				>
 					{{ button.label }}

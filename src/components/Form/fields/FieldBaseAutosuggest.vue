@@ -62,7 +62,7 @@
 					{{ item.label }}
 					<button
 						v-if="!isDisabled"
-						class="pkpAutosuggest__deselect"
+						class="btn btn-primary"
 						@click.stop.prevent="deselect(item)"
 					>
 						<icon icon="times" />

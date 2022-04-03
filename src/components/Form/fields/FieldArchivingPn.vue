@@ -54,7 +54,7 @@
 				class="pkpFormField--options__option"
 			>
 				<input
-					class="pkpFormField--options__input"
+					class="form-control"
 					v-model="selectedValue"
 					:value="option.value"
 					type="checkbox"

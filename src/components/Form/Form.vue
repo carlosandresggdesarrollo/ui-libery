@@ -1,11 +1,12 @@
 <template>
-	<form class="pkpForm -pkpClearfix" :method="method" :action="action">
+	<form class="" :method="method" :action="action">
 		<input
 			v-for="(value, name) in hiddenFields"
 			:key="name"
 			type="hidden"
 			:name="name"
 			:value="value"
+			class="form-control"
 		/>
 		<form-locales
 			v-if="availableLocales.length > 1"
@@ -22,7 +23,7 @@
 					class="pkpForm__pageNavListItem"
 				>
 					<button
-						class="pkpForm__pageNavPage"
+						class="btn btn-primary"
 						:class="{'pkpForm__pageNavPage--current': page.id === currentPage}"
 						@click.prevent="setCurrentPage(page.id)"
 					>

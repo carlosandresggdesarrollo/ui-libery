@@ -38,7 +38,7 @@
 		<div class="pkpFormField__control" :class="controlClasses">
 			<div class="pkpFormField__control_top">
 				<input
-					class="pkpFormField__input pkpFormField--text__input"
+					class="form-control"
 					ref="input"
 					v-model="currentValue"
 					:type="inputType"
@@ -66,7 +66,7 @@
 				/>
 				<pkp-button
 					v-if="optIntoEdit && isDisabled"
-					class="pkpFormField--text__optIntoEdit"
+					class="btn btn-primary"
 					@click="isDisabled = false"
 				>
 					{{ optIntoEditLabel }}
