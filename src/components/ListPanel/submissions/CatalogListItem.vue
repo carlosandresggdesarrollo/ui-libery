@@ -1,65 +1,72 @@
 <template>
 	<div
-		class="listPanel__item--catalog"
+		class="row"
 		:class="{
-			'-isFeatured': isFeatured
+			'': isFeatured
 		}"
 	>
-		<div class="listPanel__itemSummary">
-			<div class="listPanel__itemIdentity listPanel__itemIdentity--catalog">
-				<div class="listPanel__item--catalog__id">
+		<div class="col-sm-1">
+			<div class="">
+				<div class="">
 					{{ item.id }}
 				</div>
-				<div class="listPanel__itemTitle">
-					<span
-						v-if="currentPublication.authorsStringShort"
-						class="listPanel__item--submission__author"
-					>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div>
+				<div class="">
+					<span v-if="currentPublication.authorsStringShort" class="">
 						{{ currentPublication.authorsStringShort }}
 					</span>
 				</div>
-				<div class="listPanel__itemSubtitle">
+				<div class="">
 					{{ localize(currentPublication.fullTitle) }}
 				</div>
 			</div>
+		</div>
 
-			<div class="listPanel__itemActions listPanel__itemActions--catalog">
-				<pkp-button element="a" :href="item.urlWorkflow">
-					{{ __('submission.list.viewSubmission') }}
-				</pkp-button>
-				<pkp-button element="a" :href="item.urlPublished">
-					{{ __('submission.list.viewEntry') }}
-				</pkp-button>
-				<button
-					class="listPanel__item--catalog__select listPanel__item--catalog__select--first"
-					@click.prevent="toggleFeatured"
-				>
-					<icon v-if="isFeatured" icon="check-square-o" />
-					<icon v-else icon="square-o" />
-					<span class="-screenReader">
-						<template v-if="isFeatured">
-							{{ __('catalog.manage.isFeatured') }}
-						</template>
-						<template v-else>
-							{{ __('catalog.manage.isNotFeatured') }}
-						</template>
-					</span>
-				</button>
-				<button
-					class="listPanel__item--catalog__select"
-					@click.prevent="toggleNewRelease"
-				>
-					<icon :icon="isNewRelease ? 'check-square-o' : 'square-o'" />
-					<span class="-screenReader">
-						<template v-if="isNewRelease">
-							{{ __('catalog.manage.isNewRelease') }}
-						</template>
-						<template v-else>
-							{{ __('catalog.manage.isNotNewRelease') }}
-						</template>
-					</span>
-				</button>
-			</div>
+		<div class="col-sm-3">
+			<pkp-button element="a" :href="item.urlWorkflow">
+				{{ __('submission.list.viewSubmission') }}
+			</pkp-button>
+		</div>
+		<div class="col-sm-2">
+			<pkp-button element="a" :href="item.urlPublished">
+				{{ __('submission.list.viewEntry') }}
+			</pkp-button>
+		</div>
+		<div class="col-sm-1">
+			<button
+				class="listPanel__item--catalog__select listPanel__item--catalog__select--first"
+				@click.prevent="toggleFeatured"
+			>
+				<icon v-if="isFeatured" icon="check-square-o" />
+				<icon v-else icon="square-o" />
+				<span class="-screenReader">
+					<template v-if="isFeatured">
+						{{ __('catalog.manage.isFeatured') }}
+					</template>
+					<template v-else>
+						{{ __('catalog.manage.isNotFeatured') }}
+					</template>
+				</span>
+			</button>
+		</div>
+		<div class="col-sm-1">
+			<button
+				class="listPanel__item--catalog__select"
+				@click.prevent="toggleNewRelease"
+			>
+				<icon :icon="isNewRelease ? 'check-square-o' : 'square-o'" />
+				<span class="-screenReader">
+					<template v-if="isNewRelease">
+						{{ __('catalog.manage.isNewRelease') }}
+					</template>
+					<template v-else>
+						{{ __('catalog.manage.isNotNewRelease') }}
+					</template>
+				</span>
+			</button>
 		</div>
 		<orderer
 			v-if="isOrdering"
