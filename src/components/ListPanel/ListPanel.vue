@@ -1,6 +1,6 @@
 <template>
-	<div class="listPanel">
-		<div class="listPanel__header">
+	<div class="container">
+		<div class="">
 			<slot name="header">
 				<pkp-header>
 					<component :is="headingLevel">{{ title }}</component>
@@ -17,20 +17,20 @@
 					<slot name="sidebar" />
 				</div>
 			</transition>
-			<div class="listPanel__items">
-				<div v-if="!items.length" class="listPanel__empty">
+			<div class="">
+				<div v-if="!items.length" class="">
 					<slot name="itemsEmpty">{{ currentEmptyLabel }}</slot>
 				</div>
-				<ul v-else class="listPanel__itemsList">
-					<li v-for="item in items" :key="item.id" class="listPanel__item">
+				<ul v-else class="list-group">
+					<li v-for="item in items" :key="item.id" class="list-group-item ">
 						<slot name="item" :item="item">
-							<div class="listPanel__itemSummary">
-								<div class="listPanel__itemIdentity">
-									<div class="listPanel__itemTitle">
+							<div class="">
+								<div class="">
+									<div class="">
 										<slot name="itemTitle" :item="item">{{ item.title }}</slot>
 									</div>
 									<div
-										class="listPanel__itemSubtitle"
+										class=""
 										v-if="!!$scopedSlots.itemSubtitle || item.subtitle"
 									>
 										<slot name="itemSubtitle" :item="item">
@@ -38,25 +38,19 @@
 										</slot>
 									</div>
 								</div>
-								<div
-									v-if="!!$scopedSlots.itemActions"
-									class="listPanel__itemActions"
-								>
+								<div v-if="!!$scopedSlots.itemActions" class="">
 									<slot name="itemActions" :item="item" />
 								</div>
 							</div>
 						</slot>
-						<div
-							v-if="expanded.includes(item.id)"
-							class="listPanel__itemExpanded"
-						>
+						<div v-if="expanded.includes(item.id)" class="">
 							<slot name="itemExpanded" :item="item" />
 						</div>
 					</li>
 				</ul>
 			</div>
 		</div>
-		<div v-if="!!$slots.footer" class="listPanel__footer">
+		<div v-if="!!$slots.footer" class="">
 			<slot name="footer" />
 		</div>
 	</div>

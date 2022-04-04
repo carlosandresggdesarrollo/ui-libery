@@ -1,10 +1,8 @@
 <template>
-	<div class="listPanel__item--submission">
-		<div class="listPanel__itemSummary">
-			<div class="listPanel__itemIdentity listPanel__itemIdentity--submission">
-				<div class="listPanel__item--submission__id">
-					{{ item.id }}
-				</div>
+	<div class="">
+		<div class="row">
+			<div class="col-sm-8">
+				<div class="">Folio: {{ item.id }}</div>
 				<div class="listPanel__itemTitle">
 					<span v-if="currentUserIsReviewer">
 						{{ __('submission.list.reviewAssignment') }}
@@ -69,65 +67,60 @@
 				</div>
 			</div>
 
-			<div class="listPanel__itemActions">
-				<!-- Workflow stage information -->
-				<div
-					v-if="!currentUserIsReviewer"
-					class="listPanel__item--submission__itemSummaryDetails"
-				>
-					<div class="listPanel__item--submission__itemSummaryDetailsRow">
-						<!-- use aria-hidden on these details because the information can be
-							more easily acquired by screen readers from the details panel. -->
-						<div class="listPanel__item--submission__flags" aria-hidden="true">
-							<span v-if="isReviewStage">
-								<icon icon="user-o" :inline="true" />
-								{{ completedReviewsCount }}/{{
-									currentReviewAssignments.length
-								}}
-							</span>
-							<span v-if="activeStage.files.count">
-								<icon icon="file-text-o" :inline="true" />
-								{{ activeStage.files.count }}
-							</span>
-							<span v-if="openQueryCount">
-								<icon icon="comment-o" :inline="true" />
-								{{ openQueryCount }}
-							</span>
-						</div>
-						<badge
-							class="listPanel__item--submission__stage"
-							:isButton="!isArchived"
-							:label="currentStageDescription"
-							:stage="isArchived ? '' : currentStage"
-							:isPrimary="isScheduled"
-							:isSuccess="isPublished"
-							:isWarnable="isDeclined"
-							@click="filterByStage(activeStage.id)"
-						>
-							{{ currentStageLabel }}
-						</badge>
+			<!-- Workflow stage information -->
+			<div v-if="!currentUserIsReviewer" class="col-sm-2 ">
+				<div class="">
+					<!-- use aria-hidden on these details because the information can be
+								more easily acquired by screen readers from the details panel. -->
+					<div class="listPanel__item--submission__flags" aria-hidden="true">
+						<span v-if="isReviewStage">
+							<icon icon="user-o" :inline="true" />
+							{{ completedReviewsCount }}/{{ currentReviewAssignments.length }}
+						</span>
+						<span v-if="activeStage.files.count">
+							<icon icon="file-text-o" :inline="true" />
+							{{ activeStage.files.count }}
+						</span>
+						<span v-if="openQueryCount">
+							<icon icon="comment-o" :inline="true" />
+							{{ openQueryCount }}
+						</span>
 					</div>
+					<badge
+						class="listPanel__item--submission__stage"
+						:isButton="!isArchived"
+						:label="currentStageDescription"
+						:stage="isArchived ? '' : currentStage"
+						:isPrimary="isScheduled"
+						:isSuccess="isPublished"
+						:isWarnable="isDeclined"
+						@click="filterByStage(activeStage.id)"
+					>
+						{{ currentStageLabel }}
+					</badge>
 				</div>
+			</div>
 
-				<!-- Review status -->
-				<template v-else>
-					<div
-						v-if="currentUserLatestReviewAssignment.reviewCancelled"
-						class="listPanel__item--submission__reviewCancelled"
-					>
-						<icon icon="exclamation-triangle" :inline="true" />
-						{{ __('submission.list.reviewCancelled') }}
-					</div>
-					<div
-						v-if="currentUserLatestReviewAssignment.reviewComplete"
-						class="listPanel__item--submission__reviewComplete"
-					>
-						<icon icon="check" :inline="true" />
-						{{ __('submission.list.reviewComplete') }}
-					</div>
-				</template>
+			<!-- Review status -->
+			<template v-else class="col-sm-2">
+				<div
+					v-if="currentUserLatestReviewAssignment.reviewCancelled"
+					class="listPanel__item--submission__reviewCancelled"
+				>
+					<icon icon="exclamation-triangle" :inline="true" />
+					{{ __('submission.list.reviewCancelled') }}
+				</div>
+				<div
+					v-if="currentUserLatestReviewAssignment.reviewComplete"
+					class="listPanel__item--submission__reviewComplete"
+				>
+					<icon icon="check" :inline="true" />
+					{{ __('submission.list.reviewComplete') }}
+				</div>
+			</template>
 
-				<!-- Actions -->
+			<!-- Actions -->
+			<div class="col-sm-2">
 				<pkp-button element="a" :href="item.urlWorkflow">
 					<span aria-hidden="true">{{ __('common.view') }}</span>
 					<span v-if="currentUserIsReviewer" class="-screenReader">

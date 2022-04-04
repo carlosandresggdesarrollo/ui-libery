@@ -1,10 +1,6 @@
 <template>
-	<div class="submissionsListPanel">
-		<list-panel
-			:isSidebarVisible="isSidebarVisible"
-			:items="items"
-			class="listPanel--submissions"
-		>
+	<div class="">
+		<list-panel :isSidebarVisible="isSidebarVisible" :items="items" class="">
 			<pkp-header slot="header">
 				<h2>{{ title }}</h2>
 				<spinner v-if="isLoading" />
@@ -37,11 +33,7 @@
 						{{ __('common.filter') }}
 					</h3>
 				</pkp-header>
-				<div
-					v-for="(filterSet, index) in filters"
-					:key="index"
-					class="listPanel__block"
-				>
+				<div v-for="(filterSet, index) in filters" :key="index" class="">
 					<pkp-header v-if="filterSet.heading">
 						<h4>{{ filterSet.heading }}</h4>
 					</pkp-header>

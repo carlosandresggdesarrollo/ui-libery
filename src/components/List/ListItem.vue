@@ -1,9 +1,9 @@
 <template>
-	<li class="listItem" :class="classes">
-		<span v-if="hasValueSlot" class="listItem__value">
+	<li class="list-group-item" :class="classes">
+		<span v-if="hasValueSlot" class="label">
 			<slot name="value"></slot>
 		</span>
-		<span class="listItem__label">
+		<span class="label">
 			<slot></slot>
 		</span>
 	</li>

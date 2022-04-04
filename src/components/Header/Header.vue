@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="pkpHeader"
+		class="row pkpHeader"
 		:class="{'-isOneLine': isOneLine, '-pkpClearfix': !isOneLine}"
 	>
 		<span class="pkpHeader__title">

@@ -1,6 +1,6 @@
 <template>
-	<div class="row">
-		<div class="col-sm-12">
+	<div class="">
+		<div class="">
 			<span class="-screenReader">{{ currentSearchLabel }}</span>
 			<input
 				type="search"
