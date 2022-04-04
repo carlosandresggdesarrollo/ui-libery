@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="container-fluid">
 		<list-panel
 			:isSidebarVisible="isSidebarVisible"
 			:items="items"

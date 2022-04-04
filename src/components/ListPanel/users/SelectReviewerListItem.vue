@@ -3,9 +3,9 @@
 		class="listPanel__item--reviewer"
 		:class="currentlyAssigned ? '-isAssigned' : ''"
 	>
-		<div class="listPanel__itemSummary">
-			<div class="listPanel__itemIdentity">
-				<div class="listPanel__itemTitle">
+		<div class="listPanel__itemSummary container col-12">
+			<div class="listPanel__itemIdentity col-sm-6">
+				<div class="listPanel__itemTitle col-sm-6">
 					<badge
 						v-if="item.reviewsActive && canSelect"
 						class="listPanel__item--reviewer__active"
@@ -105,8 +105,8 @@
 				</div>
 			</div>
 
-			<div class="listPanel__itemActions">
-				<pkp-button v-if="canSelect" @click="select">
+			<div class="listPanel__itemActions col-3">
+				<pkp-button v-if="canSelect" @click="select" class="d-none d-sm-block">
 					<template v-if="assignedToLastRound">
 						<span aria-hidden="true">{{ reassignLabel }}</span>
 						<span class="-screenReader">
