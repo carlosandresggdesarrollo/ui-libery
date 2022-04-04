@@ -1,5 +1,5 @@
 <template>
-	<div class="container">
+	<div class="">
 		<div class="">
 			<slot name="header">
 				<pkp-header>
@@ -7,13 +7,9 @@
 				</pkp-header>
 			</slot>
 		</div>
-		<div class="listPanel__body">
-			<transition name="listPanel__sidebar">
-				<div
-					v-if="!!$slots.sidebar && isSidebarVisible"
-					class="listPanel__sidebar"
-					ref="sidebar"
-				>
+		<div class="">
+			<transition name="">
+				<div v-if="!!$slots.sidebar && isSidebarVisible" class="" ref="sidebar">
 					<slot name="sidebar" />
 				</div>
 			</transition>

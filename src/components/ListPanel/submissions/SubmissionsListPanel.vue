@@ -1,5 +1,5 @@
 <template>
-	<div class="askjlvnsdjvsdcn">
+	<div class="">
 		<list-panel :isSidebarVisible="isSidebarVisible" :items="items" class="">
 			<pkp-header slot="header">
 				<h2>{{ title }}</h2>

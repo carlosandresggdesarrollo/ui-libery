@@ -1,5 +1,5 @@
 <template>
-	<div class="">
+	<div class="row">
 		<div class="row">
 			<div class="col-sm-8">
 				<div class="">Folio: {{ item.id }}</div>
