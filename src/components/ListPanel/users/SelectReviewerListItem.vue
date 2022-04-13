@@ -1,10 +1,7 @@
 <template>
-	<div
-		class="listPanel__item--reviewer"
-		:class="currentlyAssigned ? '-isAssigned' : ''"
-	>
-		<div class="listPanel__itemSummary row">
-			<div class="col-sm-6 listPanel__itemIdentity ">
+	<div class="--reviewer" :class="currentlyAssigned ? '-isAssigned' : ''">
+		<div class=" row">
+			<div class="col-sm-6 ">
 				<div class="listPanel__itemTitle ">
 					<badge
 						v-if="item.reviewsActive && canSelect"
@@ -105,26 +102,36 @@
 				</div>
 			</div>
 
-			<div class="col-sm-6 listPanel__itemActions ">
-				<pkp-button v-if="canSelect" @click="select" class="d-none d-sm-block">
-					<template v-if="assignedToLastRound">
-						<span aria-hidden="true">{{ reassignLabel }}</span>
-						<span class="-screenReader">
-							{{ reassignWithName }}
-						</span>
-					</template>
-					<template v-else>
-						<span aria-hidden="true">{{ selectReviewerLabel }}</span>
-						<span class="-screenReader">
-							{{ __('common.selectWithName', {name: item.fullName}) }}
-						</span>
-					</template>
-				</pkp-button>
-				<expander
-					:isExpanded="isExpanded"
-					:itemName="item.fullName"
-					@toggle="isExpanded = !isExpanded"
-				/>
+			<div class="col-sm-6">
+				<div class="row">
+					<div class="col-sm-6">
+						<pkp-button
+							v-if="canSelect"
+							@click="select"
+							class=" form-control d-none d-sm-block"
+						>
+							<template v-if="assignedToLastRound">
+								<span aria-hidden="true">{{ reassignLabel }}</span>
+								<span class="-screenReader form-control">
+									{{ reassignWithName }}
+								</span>
+							</template>
+							<template v-else>
+								<span aria-hidden="true">{{ selectReviewerLabel }}</span>
+								<span class="-screenReader">
+									{{ __('common.selectWithName', {name: item.fullName}) }}
+								</span>
+							</template>
+						</pkp-button>
+					</div>
+					<div class="col-sm-6">
+						<expander
+							:isExpanded="isExpanded"
+							:itemName="item.fullName"
+							@toggle="isExpanded = !isExpanded"
+						/>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div

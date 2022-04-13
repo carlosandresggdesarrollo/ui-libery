@@ -1,18 +1,13 @@
 <template>
-	<div
-		class="row"
-		:class="{
-			'': isFeatured
-		}"
-	>
-		<div class="col-sm-1">
+	<div class="row" :class="{'': isFeatured}" style="text-align:justify;">
+		<div class="col-sm-1 text-center">
 			<div class="">
 				<div class="">
 					{{ item.id }}
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-4">
+		<div class="col-sm-3 " style="justify-content:center;">
 			<div>
 				<div class="">
 					<span v-if="currentPublication.authorsStringShort" class="">
@@ -26,20 +21,25 @@
 		</div>
 
 		<div class="col-sm-3">
-			<pkp-button element="a" :href="item.urlWorkflow">
+			<pkp-button
+				element="a"
+				:href="item.urlWorkflow"
+				style="display:flex;justify-content:center;"
+			>
 				{{ __('submission.list.viewSubmission') }}
 			</pkp-button>
 		</div>
-		<div class="col-sm-2">
-			<pkp-button element="a" :href="item.urlPublished">
+		<div class="col-sm-2" style="justify-content:center;">
+			<pkp-button
+				element="a"
+				:href="item.urlPublished"
+				style="display:flex;justify-content:center;"
+			>
 				{{ __('submission.list.viewEntry') }}
 			</pkp-button>
 		</div>
-		<div class="col-sm-1">
-			<button
-				class="listPanel__item--catalog__select listPanel__item--catalog__select--first"
-				@click.prevent="toggleFeatured"
-			>
+		<div class="col-sm-1" style="justify-content:center;">
+			<button class="form-control" @click.prevent="toggleFeatured">
 				<icon v-if="isFeatured" icon="check-square-o" />
 				<icon v-else icon="square-o" />
 				<span class="-screenReader">
@@ -52,11 +52,8 @@
 				</span>
 			</button>
 		</div>
-		<div class="col-sm-1">
-			<button
-				class="listPanel__item--catalog__select"
-				@click.prevent="toggleNewRelease"
-			>
+		<div class="col-sm-1" style="justify-content: center;">
+			<button class="form-control" @click.prevent="toggleNewRelease">
 				<icon :icon="isNewRelease ? 'check-square-o' : 'square-o'" />
 				<span class="-screenReader">
 					<template v-if="isNewRelease">
@@ -68,6 +65,7 @@
 				</span>
 			</button>
 		</div>
+		<div class="col-sm-1"></div>
 		<orderer
 			v-if="isOrdering"
 			@up="$emit('order-up', item)"

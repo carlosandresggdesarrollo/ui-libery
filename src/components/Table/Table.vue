@@ -7,12 +7,8 @@
 			:aria-describedBy="describedBy ? describedBy : false"
 		>
 			<caption v-if="label || description">
-				<div v-if="label" class="pkpTable__label">{{ label }}</div>
-				<div
-					v-if="description"
-					class="pkpTable__description"
-					v-html="description"
-				/>
+				<div v-if="label" class="">{{ label }}</div>
+				<div v-if="description" class="" v-html="description" />
 			</caption>
 			<thead>
 				<tr>
@@ -47,11 +43,7 @@
 				@keydown.right.exact.prevent="focusNextCell"
 				@keydown.down.exact.prevent="focusNextRow"
 			>
-				<tr
-					v-for="(row, rowIndex) in rows"
-					:key="'row' + rowIndex"
-					class="pkpTable__row"
-				>
+				<tr v-for="(row, rowIndex) in rows" :key="'row' + rowIndex" class="">
 					<slot :row="row" :rowIndex="rowIndex">
 						<table-cell
 							v-for="(column, columnIndex) in columns"
