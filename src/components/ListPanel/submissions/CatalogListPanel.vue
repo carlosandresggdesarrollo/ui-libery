@@ -6,15 +6,23 @@
 			class="listPanel--catalog"
 			:class="isOrdering ? '-isOrdering' : ''"
 		>
-			<template slot="header">
-				<pkp-header>
-					<h2>{{ title }}</h2>
-					<spinner v-if="isLoading" />
-					<template slot="actions">
+			<div slot="header" class="container">
+				<div class="row">
+					<div class="col-sm-4">
+						<h2>{{ title }}</h2>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4">
 						<search
 							:searchPhrase="searchPhrase"
 							@search-phrase-changed="setSearchPhrase"
+							style="margin-left:4px;"
 						/>
+					</div>
+				</div>
+				<template class="row" slot="actions">
+					<div class="col-sm-4">
 						<pkp-button
 							:isActive="isSidebarVisible"
 							@click="isSidebarVisible = !isSidebarVisible"
@@ -22,31 +30,44 @@
 							<icon icon="filter" :inline="true" />
 							{{ __('common.filter') }}
 						</pkp-button>
-						<template v-if="canOrderCurrent">
-							<pkp-button
-								class="listPanel--catalog__orderToggle"
-								icon="sort"
-								:isActive="isOrdering"
-								@click="toggleOrdering"
-							>
-								{{ orderingLabel }}
-							</pkp-button>
-							<pkp-button
-								v-if="isOrdering"
-								class="listPanel--catalog__orderCancel"
-								:isWarnable="true"
-								@click="cancelOrdering"
-							>
-								{{ __('common.cancel') }}
-							</pkp-button>
+					</div>
+					<div class="col-sm-6">
+						<template v-if="canOrderCurrent" class="row">
+							<div class="col-sm-6">
+								<pkp-button
+									class="listPanel--catalog__orderToggle"
+									icon="sort"
+									:isActive="isOrdering"
+									@click="toggleOrdering"
+								>
+									{{ orderingLabel }}
+								</pkp-button>
+							</div>
+							<div class="col-sm-6">
+								<pkp-button
+									v-if="isOrdering"
+									class="listPanel--catalog__orderCancel"
+									:isWarnable="true"
+									@click="cancelOrdering"
+								>
+									{{ __('common.cancel') }}
+								</pkp-button>
+							</div>
 						</template>
+					</div>
+					<div>
 						<pkp-button
 							ref="addEntryButton"
 							@click="$modal.show('addCatalogEntry')"
 						>
 							{{ __('submission.catalogEntry.new') }}
 						</pkp-button>
-					</template>
+					</div>
+				</template>
+				<pkp-header>
+					<div class="row">
+						<spinner v-if="isLoading" />
+					</div>
 				</pkp-header>
 
 				<!-- A notice indicating which kind of submissions are being ordered -->
@@ -55,19 +76,18 @@
 				</notification>
 
 				<!-- Table-like column headers for featured/new -->
-				<div
-					v-if="items.length"
-					class="listPanel--catalog__headings"
-					aria-hidden="true"
-				>
-					<span class="listPanel--catalog__heading">
-						{{ featuredLabel }}
-					</span>
-					<span class="listPanel--catalog__heading">
-						{{ newReleaseLabel }}
-					</span>
+				<div class="d-none d-sm-none d-md-block">
+					<div v-if="items.length" class="row " aria-hidden="true">
+						<div class="col-sm-8"></div>
+						<span class="col-sm-1">
+							{{ featuredLabel }}
+						</span>
+						<span class="col-sm-1">
+							{{ newReleaseLabel }}
+						</span>
+					</div>
 				</div>
-			</template>
+			</div>
 
 			<template slot="sidebar">
 				<pkp-header :isOneLine="false">

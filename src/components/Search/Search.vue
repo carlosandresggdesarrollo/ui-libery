@@ -1,26 +1,12 @@
 <template>
-	<div class="">
-		<div class="">
-			<span class="-screenReader">{{ currentSearchLabel }}</span>
-			<input
-				type="search"
-				class="form-control"
-				@keyup="searchPhraseKeyUp"
-				:id="inputId"
-				:value="searchPhrase"
-				:placeholder="currentSearchLabel"
-			/>
-		</div>
-		<button
-			class="pkpSearch__clear"
-			v-if="searchPhrase"
-			@click.prevent="clearSearchPhrase"
-			:aria-controls="inputId"
-		>
-			<icon icon="times" />
-			<span class="-screenReader">{{ __('common.clearSearch') }}</span>
-		</button>
-	</div>
+	<input
+		type="search"
+		class="form-control"
+		@keyup="searchPhraseKeyUp"
+		:id="inputId"
+		:value="searchPhrase"
+		:placeholder="currentSearchLabel"
+	/>
 </template>
 
 <script>

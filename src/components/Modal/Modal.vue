@@ -1,5 +1,5 @@
 <template>
-	<div class="modal">
+	<div class="modal1">
 		<modal
 			v-bind="MODAL_PROPS"
 			:name="name"

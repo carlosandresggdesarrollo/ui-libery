@@ -62,7 +62,7 @@
 					-->
 					<input
 						v-if="type === 'checkbox'"
-						class="form-controlt"
+						class="form-control"
 						v-model="selectedValue"
 						:value="option.value"
 						type="checkbox"

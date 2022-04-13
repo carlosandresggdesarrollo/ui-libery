@@ -38,32 +38,36 @@
 				{{ __('submission.list.viewEntry') }}
 			</pkp-button>
 		</div>
-		<div class="col-sm-1" style="justify-content:center;">
-			<button class="form-control" @click.prevent="toggleFeatured">
-				<icon v-if="isFeatured" icon="check-square-o" />
-				<icon v-else icon="square-o" />
-				<span class="-screenReader">
-					<template v-if="isFeatured">
-						{{ __('catalog.manage.isFeatured') }}
-					</template>
-					<template v-else>
-						{{ __('catalog.manage.isNotFeatured') }}
-					</template>
-				</span>
-			</button>
+		<div class="col-sm-1">
+			<center>
+				<div class="col-smform-control" @click.prevent="toggleFeatured">
+					<icon v-if="isFeatured" icon="check-square-o" />
+					<icon v-else icon="square-o" />
+					<span class="-screenReader">
+						<template v-if="isFeatured">
+							{{ __('catalog.manage.isFeatured') }}
+						</template>
+						<template v-else>
+							{{ __('catalog.manage.isNotFeatured') }}
+						</template>
+					</span>
+				</div>
+			</center>
 		</div>
-		<div class="col-sm-1" style="justify-content: center;">
-			<button class="form-control" @click.prevent="toggleNewRelease">
-				<icon :icon="isNewRelease ? 'check-square-o' : 'square-o'" />
-				<span class="-screenReader">
-					<template v-if="isNewRelease">
-						{{ __('catalog.manage.isNewRelease') }}
-					</template>
-					<template v-else>
-						{{ __('catalog.manage.isNotNewRelease') }}
-					</template>
-				</span>
-			</button>
+		<div class="col-sm-1">
+			<center>
+				<div @click.prevent="toggleNewRelease">
+					<icon :icon="isNewRelease ? 'check-square-o' : 'square-o'" />
+					<span class="-screenReader">
+						<template v-if="isNewRelease">
+							{{ __('catalog.manage.isNewRelease') }}
+						</template>
+						<template v-else>
+							{{ __('catalog.manage.isNotNewRelease') }}
+						</template>
+					</span>
+				</div>
+			</center>
 		</div>
 		<div class="col-sm-1"></div>
 		<orderer

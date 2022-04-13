@@ -1,7 +1,7 @@
 <template>
 	<div class="container">
 		<div class="row ">
-			<div class="col-sm-4" style="justify-content:center;">
+			<div class="col-sm-4">
 				<div class="">Folio: {{ item.id }}</div>
 				<div class="listPanel__itemTitle">
 					<span v-if="currentUserIsReviewer">
@@ -68,75 +68,66 @@
 			</div>
 
 			<!-- Workflow stage information -->
-			<div
-				v-if="!currentUserIsReviewer"
-				class="col-sm-4"
-				style="justify-content:center;"
-			>
-				<div class="row" style="display:flex;justify-content:center;">
-					<div class="col-sm-6" style="justify-content:center;">
-						<!-- use aria-hidden on these details because the information can be
-								more easily acquired by screen readers from the details panel. -->
-						<div
-							class="form-control"
-							aria-hidden="true"
-							style="display:flex;justify-content:center;"
-						>
-							<span v-if="isReviewStage">
-								<icon icon="user-o" :inline="true" />
-								{{ completedReviewsCount }}/{{
-									currentReviewAssignments.length
-								}}
-							</span>
-							<span v-if="activeStage.files.count">
-								<icon icon="file-text-o" :inline="true" />
-								{{ activeStage.files.count }}
-							</span>
-							<span v-if="openQueryCount">
-								<icon icon="comment-o" :inline="true" />
-								{{ openQueryCount }}
-							</span>
-						</div>
+			<div v-if="!currentUserIsReviewer" class="col-sm-4">
+				<div class="row">
+					<div class="col-sm-6">
+						<center>
+							<div class="" aria-hidden="true">
+								<span v-if="isReviewStage">
+									<icon icon="user-o" :inline="true" />
+									{{ completedReviewsCount }}/{{
+										currentReviewAssignments.length
+									}}
+								</span>
+								<span v-if="activeStage.files.count">
+									<icon icon="file-text-o" :inline="true" />
+									{{ activeStage.files.count }}
+								</span>
+								<span v-if="openQueryCount">
+									<icon icon="comment-o" :inline="true" />
+									{{ openQueryCount }}
+								</span>
+							</div>
+						</center>
 					</div>
-					<div class="col-sm-6" style="justify-content:center;">
-						<badge
-							class=" form-control--submission__stage"
-							:isButton="!isArchived"
-							:label="currentStageDescription"
-							:stage="isArchived ? '' : currentStage"
-							:isPrimary="isScheduled"
-							:isSuccess="isPublished"
-							:isWarnable="isDeclined"
-							@click="filterByStage(activeStage.id)"
-						>
-							{{ currentStageLabel }}
-						</badge>
+					<div class="col-sm-6">
+						<center>
+							<badge
+								style="margin:10px;"
+								class=" form-control--submission__stage"
+								:isButton="!isArchived"
+								:label="currentStageDescription"
+								:stage="isArchived ? '' : currentStage"
+								:isPrimary="isScheduled"
+								:isSuccess="isPublished"
+								:isWarnable="isDeclined"
+								@click="filterByStage(activeStage.id)"
+							>
+								{{ currentStageLabel }}
+							</badge>
+						</center>
 					</div>
 				</div>
 			</div>
 
 			<!-- Review status -->
-			<template
-				v-else
-				class="col-sm-4"
-				style="display:flex;justify-content:center;"
-			>
-				<div class="row" style="display:flex;justify-content:center;">
-					<div class="col-sm-6" style="justify-content:center;">
-						<div
-							v-if="currentUserLatestReviewAssignment.reviewCancelled"
-							class="form-control"
-							style="display:flex;justify-content:center;"
-						>
-							<icon icon="exclamation-triangle" :inline="true" />
-							{{ __('submission.list.reviewCancelled') }}
-						</div>
+			<template v-else class="col-sm-4">
+				<div class="row">
+					<div class="col-sm-6">
+						<center>
+							<div
+								v-if="currentUserLatestReviewAssignment.reviewCancelled"
+								class="form-control"
+							>
+								<icon icon="exclamation-triangle" :inline="true" />
+								{{ __('submission.list.reviewCancelled') }}
+							</div>
+						</center>
 					</div>
-					<div class="col-sm-6" style="justify-content:center;">
+					<div class="col-sm-6">
 						<div
 							v-if="currentUserLatestReviewAssignment.reviewComplete"
 							class="form-control"
-							style="display:flex;justify-content:center;"
 						>
 							<icon icon="check" :inline="true" />
 							{{ __('submission.list.reviewComplete') }}
@@ -146,37 +137,42 @@
 			</template>
 
 			<!-- Actions -->
-			<div class="col-sm-4" style="display:flex;justify-content:center;">
+			<div class="col-sm-4" style="margin-top:4px;">
 				<div class="row">
 					<div class="col-sm-6">
-						<pkp-button element="a" :href="item.urlWorkflow">
-							<span aria-hidden="true">{{ __('common.view') }}</span>
-							<span v-if="currentUserIsReviewer" class="-screenReader">
-								{{
-									__('common.viewWithName', {
-										name: localizeSubmission(
-											currentPublication.fullTitle,
-											currentPublication.locale
-										)
-									})
-								}}
-							</span>
-							<span v-else class="-screenReader">
-								{{
-									__('common.viewWithName', {
-										name: currentPublication.authorsStringShort
-									})
-								}}
-							</span>
-						</pkp-button>
+						<center>
+							<pkp-button element="a" :href="item.urlWorkflow">
+								<span aria-hidden="true">{{ __('common.view') }}</span>
+								<span v-if="currentUserIsReviewer" class="-screenReader">
+									{{
+										__('common.viewWithName', {
+											name: localizeSubmission(
+												currentPublication.fullTitle,
+												currentPublication.locale
+											)
+										})
+									}}
+								</span>
+								<span v-else class="-screenReader">
+									{{
+										__('common.viewWithName', {
+											name: currentPublication.authorsStringShort
+										})
+									}}
+								</span>
+							</pkp-button>
+						</center>
 					</div>
 					<div class="col-sm-6">
-						<expander
-							v-if="!currentUserIsReviewer"
-							:isExpanded="isExpanded"
-							:itemName="currentPublication.authorsStringShort"
-							@toggle="isExpanded = !isExpanded"
-						/>
+						<center>
+							<expander
+								v-if="!currentUserIsReviewer"
+								style="margin:6px;"
+								:isExpanded="isExpanded"
+								:itemName="currentPublication.authorsStringShort"
+								@toggle="isExpanded = !isExpanded"
+							/>
+						</center>
 					</div>
 				</div>
 			</div>
