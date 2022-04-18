@@ -62,7 +62,8 @@
 					-->
 					<input
 						v-if="type === 'checkbox'"
-						class="form-control"
+						class="form-check-input"
+						style="margin-right:8px;"
 						v-model="selectedValue"
 						:value="option.value"
 						type="checkbox"
@@ -73,7 +74,8 @@
 					/>
 					<input
 						v-else
-						class="form-control"
+						style="margin-right:8px;"
+						class="form-check-input"
 						v-model="selectedValue"
 						:value="option.value"
 						type="radio"

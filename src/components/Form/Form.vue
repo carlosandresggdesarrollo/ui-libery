@@ -6,7 +6,6 @@
 			type="hidden"
 			:name="name"
 			:value="value"
-			class="form-control"
 		/>
 		<form-locales
 			v-if="availableLocales.length > 1"

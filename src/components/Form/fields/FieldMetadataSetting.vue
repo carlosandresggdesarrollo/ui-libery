@@ -35,7 +35,7 @@
 				class="pkpFormField--options__option"
 			>
 				<input
-					class="pkpFormField--options__input"
+					class="form-check-input"
 					type="checkbox"
 					v-model="isEnabled"
 					:value="option.value"

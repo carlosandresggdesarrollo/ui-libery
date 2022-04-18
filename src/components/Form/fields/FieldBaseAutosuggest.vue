@@ -39,7 +39,7 @@
 		/>
 		<div class="pkpFormField__control pkpAutosuggest__control">
 			<div
-				class="pkpAutosuggest__inputWrapper pkpFormField__input"
+				class="pkpAutosuggest__inputWrapper "
 				:class="{
 					'pkpAutosuggest__inputWrapper--multilingual':
 						isMultilingual && locales.length > 1,

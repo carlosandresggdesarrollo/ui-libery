@@ -52,7 +52,7 @@
 			>
 				<template v-if="!option.isInput">
 					<input
-						class="pkpFormField--options__input"
+						class="form-check-input"
 						v-model="selectedValue"
 						:value="option.value"
 						type="radio"
