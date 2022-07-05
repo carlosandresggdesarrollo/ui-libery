@@ -1,55 +1,6 @@
 <template>
 	<div class="">
 		<list-panel :isSidebarVisible="isSidebarVisible" :items="items" class="">
-			<pkp-header slot="header">
-				<h2>{{ title }}</h2>
-				<spinner v-if="isLoading" />
-				<template slot="actions">
-					<search
-						:searchPhrase="searchPhrase"
-						@search-phrase-changed="setSearchPhrase"
-					/>
-					<pkp-button
-						:isActive="isSidebarVisible"
-						@click="isSidebarVisible = !isSidebarVisible"
-					>
-						<icon icon="filter" :inline="true" />
-						{{ __('common.filter') }}
-					</pkp-button>
-					<pkp-button
-						v-if="addUrl && currentUserCanAddSubmission"
-						element="a"
-						:href="addUrl"
-					>
-						{{ __('submission.submit.newSubmissionSingle') }}
-					</pkp-button>
-				</template>
-			</pkp-header>
-
-			<template slot="sidebar">
-				<pkp-header :isOneLine="false">
-					<h3>
-						<icon icon="filter" :inline="true" />
-						{{ __('common.filter') }}
-					</h3>
-				</pkp-header>
-				<div v-for="(filterSet, index) in filters" :key="index" class="">
-					<pkp-header v-if="filterSet.heading">
-						<h4>{{ filterSet.heading }}</h4>
-					</pkp-header>
-					<component
-						v-for="filter in filterSet.filters"
-						:key="filter.param + filter.value"
-						:is="filter.filterType || 'pkp-filter'"
-						v-bind="filter"
-						:isFilterActive="isFilterActive(filter.param, filter.value)"
-						@add-filter="addFilter"
-						@remove-filter="removeFilter"
-						@update-filter="addFilter"
-					/>
-				</div>
-			</template>
-
 			<template slot="itemsEmpty">
 				<template v-if="isLoading">
 					<spinner />
@@ -88,11 +39,6 @@
 <script>
 import ListPanel from '@/components/ListPanel/ListPanel.vue';
 import Pagination from '@/components/Pagination/Pagination.vue';
-import PkpFilter from '@/components/Filter/Filter.vue';
-import PkpFilterSlider from '@/components/Filter/FilterSlider.vue';
-import PkpFilterAutosuggest from '@/components/Filter/FilterAutosuggest.vue';
-import PkpHeader from '@/components/Header/Header.vue';
-import Search from '@/components/Search/Search.vue';
 import SubmissionsListItem from '@/components/ListPanel/submissions/SubmissionsListItem.vue';
 import fetch from '@/mixins/fetch';
 
@@ -101,11 +47,6 @@ export default {
 	components: {
 		ListPanel,
 		Pagination,
-		PkpFilter,
-		PkpFilterSlider,
-		PkpFilterAutosuggest,
-		PkpHeader,
-		Search,
 		SubmissionsListItem
 	},
 	props: {
