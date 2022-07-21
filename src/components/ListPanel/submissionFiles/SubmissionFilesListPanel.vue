@@ -12,9 +12,7 @@
 
 			<template slot="itemsEmpty">
 				{{ emptyLabel }}
-				<button class="-linkButton" @click="openFileBrowser">
-					{{ emptyAddLabel }}
-				</button>
+				
 			</template>
 
 			<template v-slot:item="{item}">

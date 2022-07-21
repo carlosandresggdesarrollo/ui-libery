@@ -1,17 +1,18 @@
 <template>
-	<fieldset class="pkpFormGroup -pkpClearfix">
-		<div v-if="label" class="pkpFormGroup__heading">
-			<legend class="pkpFormGroup__legend">{{ label }}</legend>
+	<fieldset class="row">
+		<div v-if="label" class="col-sm-4">
+			<legend class="título_nivel_3">{{ label }}</legend>
 			<div
 				v-if="description"
-				class="pkpFormGroup__description"
+				class="parrafo_texto text-justify"
+				style="text-align:justify;"
 				v-html="description"
 			></div>
 		</div>
-		<div class="pkpFormGroup__fields">
+		<div class="col-sm-8">
 			<template v-for="field in fieldsInGroup">
 				<template v-if="field.isMultilingual">
-					<div class="pkpFormGroup__localeGroup -pkpClearfix" :key="field.name">
+					<div class="" :key="field.name">
 						<div
 							v-for="locale in availableLocales"
 							:key="locale.key"
@@ -196,7 +197,18 @@ export default {
 
 <style lang="less">
 @import '../../styles/_import';
-
+.título_nivel_3 {
+	font-family:cambersb;
+	font-size:16pt;
+	color:#737373;
+	
+}
+.parrafo_texto {
+	font-family:camberlg;
+	font-size:12pt;
+	color:#000;
+	text-align:justify;
+}
 .pkpFormGroup {
 	position: relative;
 	padding: 2rem;

@@ -1,7 +1,8 @@
 <template>
 	<div class="pkpFormField pkpFormField--textarea" :class="classes">
 		<div class="pkpFormField__heading">
-			<form-field-label
+			 <form-field-label
+			 	class="título_nivel_2"
 				:controlId="controlId"
 				:label="label"
 				:localeLabel="localeLabel"
@@ -90,7 +91,11 @@ export default {
 
 <style lang="less">
 @import '../../../styles/_import';
-
+.título_nivel_2 {
+	font-family:cambersb;
+	font-size:18pt;
+	color:#737373;
+}
 .pkpFormField--textarea__input {
 	padding-top: 0.5em;
 	padding-bottom: 0.5em;

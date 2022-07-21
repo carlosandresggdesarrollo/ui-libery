@@ -1,10 +1,10 @@
 <template>
-	<div class="listPanel__item--submissionFile">
+	<div class="container-sm">
 		<!-- Successfully uploaded and saved submission files -->
 		<template v-if="item.fileId">
-			<div class="listPanel__itemSummary">
-				<div class="listPanel__itemIdentity">
-					<div class="listPanel__itemSubtitle">
+			<div class="row">
+				<div class="col-sm-4">
+				
 						<a
 							class="listPanel__item--submissionFile__link"
 							:href="item.url"
@@ -15,33 +15,40 @@
 								:name="localize(item.name)"
 							/>
 						</a>
-					</div>
+					
 				</div>
-				<div class="listPanel__itemActions">
-					<badge
-						v-if="item.genre"
-						:is-primary="isPrimaryGenre"
-						class="listPanel--submissionFiles__itemGenre"
-					>
-						{{ item.genre.name }}
-					</badge>
-					<pkp-button
-						:id="editId"
-						:aria-describedby="nameId"
-						@click="$emit('edit', item)"
-					>
-						{{ __('common.edit') }}
-					</pkp-button>
-					<pkp-button
-						:is-warnable="true"
-						:aria-describedby="nameId"
-						@click="$emit('remove', item)"
-					>
-						{{ __('common.remove') }}
-					</pkp-button>
+				<div class="col-sm-8">
+					<div class="row">
+						<div class="col-sm-4">
+							<badge
+								v-if="item.genre"
+								:is-primary="isPrimaryGenre"
+								class="listPanel--submissionFiles__itemGenre"
+							>
+								{{ item.genre.name }}
+							</badge>
+						</div>
+						<div class="col-sm-4">
+							<pkp-button
+								:id="editId"
+								:aria-describedby="nameId"
+								@click="$emit('edit', item)"
+							>
+								{{ __('common.edit') }}
+							</pkp-button>
+						</div>
+						<div class="col-sm-4">
+							<pkp-button
+								:is-warnable="true"
+								:aria-describedby="nameId"
+								@click="$emit('remove', item)"
+							>
+								{{ __('common.remove') }}
+							</pkp-button>
+						</div>
 				</div>
 			</div>
-			<div v-if="!item.genre" class="listPanel--submissionFiles__setGenre">
+			<div v-if="!item.genre" class="row">
 				<span role="alert">
 					<icon icon="exclamation-triangle" :inline="true" />
 					<span
@@ -78,7 +85,7 @@
 						{{ status }}
 					</span>
 				</template>
-			</div>
+			</div></div>
 		</template>
 
 		<!-- Uploads in progress not yet saved as submission files -->

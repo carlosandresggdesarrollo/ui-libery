@@ -7,22 +7,16 @@
 				:items="currentReviewers"
 			>
 				<pkp-header slot="header">
-					<h2>
+					<div class="título_nivel_2">
 						{{ title }}
-					</h2>
+					</div>
 					<spinner v-if="isLoading" />
 					<template slot="actions">
 						<search
 							:searchPhrase="searchPhrase"
 							@search-phrase-changed="setSearchPhrase"
 						/>
-						<pkp-button
-							:isActive="isSidebarVisible"
-							@click="isSidebarVisible = !isSidebarVisible"
-						>
-							<icon icon="filter" :inline="true" />
-							{{ __('common.filter') }}
-						</pkp-button>
+						
 					</template>
 				</pkp-header>
 

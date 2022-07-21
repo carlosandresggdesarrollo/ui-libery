@@ -1,7 +1,7 @@
 <template>
-	<fieldset class="pkpFormField pkpFormField--options pkpFormField--metadata">
+	<fieldset class=" pkpFormField--metadata"> <!-- pkpFormField pkpFormField--options-->
 		<legend class="pkpFormField--options__legend">
-			{{ label }}
+			<!--{{ label }}-->
 			<tooltip v-if="tooltip" aria-hidden="true" :tooltip="tooltip" label="" />
 			<span
 				v-if="tooltip"
@@ -19,7 +19,7 @@
 		</legend>
 		<div
 			v-if="description"
-			class="pkpFormField__description pkpFormField--options__description"
+			class="pkpFormField__description parrafo_textopkpFormField--options__description"
 			v-html="description"
 			:id="describedByDescriptionId"
 		/>
@@ -42,6 +42,7 @@
 					:aria-describedby="describedByIds"
 					:aria-invalid="errors && errors.length"
 					:disabled="option.disabled"
+					style="margin-right:30px;"
 				/>
 				<span
 					class="pkpFormField--options__optionLabel"
@@ -61,6 +62,7 @@
 						:value="option.value"
 						:aria-invalid="errors && errors.length"
 						:disabled="option.disabled"
+						style="margin-right:30px;"
 					/>
 					<span
 						class="pkpFormField--options__optionLabel"

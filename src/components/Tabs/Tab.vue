@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="container"
+		class=""
 		:class="classes"
 		role="tabpanel"
 		:id="id"
@@ -51,10 +51,10 @@ export default {
 		classes() {
 			let classes = [];
 			if (this.isActive) {
-				classes.push('pkpTab--isActive');
+				classes.push('');
 			}
 			if (this.isDisabled) {
-				classes.push('pkpTab--isDisabled');
+				classes.push('');
 			}
 			return classes;
 		}

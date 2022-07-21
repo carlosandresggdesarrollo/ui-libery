@@ -32,13 +32,13 @@
 		</legend>
 		<div
 			v-if="description"
-			class="pkpFormField__description pkpFormField--options__description"
+			class="pkpFormField__description parrafo_textopkpFormField--options__description"
 			v-html="description"
 			:id="describedByDescriptionId"
 		/>
 		<div
 			v-if="terms && value"
-			class="pkpFormField__description pkpFormField--options__description pkpFormField--archivingPn__terms"
+			class="pkpFormField__description parrafo_textopkpFormField--options__description pkpFormField--archivingPn__terms"
 			v-html="terms"
 		/>
 		<field-error

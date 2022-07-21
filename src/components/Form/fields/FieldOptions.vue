@@ -1,5 +1,5 @@
 <template>
-	<fieldset class="pkpFormField pkpFormField--options" :class="classes">
+	<fieldset class="" :class="classes"><!--pkpFormField pkpFormField--options-->
 		<legend class="pkpFormField--options__legend">
 			<template v-if="localeLabel">
 				<span class="aria-hidden">{{ localeLabel }}</span>
@@ -34,7 +34,7 @@
 		</legend>
 		<div
 			v-if="isPrimaryLocale && description"
-			class="pkpFormField__description pkpFormField--options__description"
+			class="pkpFormField__description parrafo_textopkpFormField--options__description"
 			v-html="description"
 			:id="describedByDescriptionId"
 		/>

@@ -1,12 +1,12 @@
 <template>
 	<div
-		class="row pkpHeader"
-		:class="{'-isOneLine': isOneLine, '-pkpClearfix': !isOneLine}"
+		class=""
+		:class="{'-': isOneLine, '-': !isOneLine}"
 	>
-		<span class="pkpHeader__title">
+		<span class="">
 			<slot />
 		</span>
-		<div v-if="hasActions" class="pkpHeader__actions">
+		<div v-if="hasActions" class="">
 			<slot name="actions" />
 		</div>
 	</div>

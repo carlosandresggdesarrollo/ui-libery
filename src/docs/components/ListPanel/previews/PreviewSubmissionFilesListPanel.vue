@@ -13,7 +13,7 @@
 		:items="components.preview.items"
 		:options="components.preview.options"
 		otherLabel="Other"
-		primaryLocale="en_US"
+		primaryLocale="es_ES"
 		removeConfirmLabel="Are you sure you want to remove this file?"
 		:stageId="1"
 		title="Files"

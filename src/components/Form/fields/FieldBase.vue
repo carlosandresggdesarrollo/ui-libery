@@ -250,7 +250,7 @@ export default {
 	line-height: @line-sml;
 }
 
-.pkpFormField__description {
+.pkpFormField__description parrafo_texto{
 	font-size: @font-sml;
 	line-height: 1.8em;
 }

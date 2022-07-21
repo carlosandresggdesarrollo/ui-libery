@@ -2,6 +2,7 @@
 	<div class="pkpFormField pkpFormField--text" :class="classes">
 		<div class="pkpFormField__heading">
 			<form-field-label
+			
 				:controlId="controlId"
 				:label="label"
 				:localeLabel="localeLabel"
@@ -17,7 +18,7 @@
 			/>
 			<span
 				v-if="isPrimaryLocale && tooltip"
-				class="-screenReader"
+				class="-screenReader" 
 				:id="describedByTooltipId"
 				v-html="tooltip"
 			/>
@@ -208,6 +209,11 @@ export default {
 	position: relative;
 }
 
+.título_nivel_2 {
+	font-family:cambersb;
+	font-size:18pt;
+	color:#737373;
+}
 .pkpFormField--text__input {
 	width: 20em;
 	display: inline-block;

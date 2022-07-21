@@ -1,40 +1,23 @@
 <template>
-	<fieldset class="pkpFormField pkpFormField--options" :class="classes">
-		<legend class="pkpFormField--options__legend">
+	<fieldset class="" :class="classes">
+		<br>
+		<legend class="título_nivel_2">
 			<template v-if="localeLabel">
 				<span class="aria-hidden">{{ localeLabel }}</span>
 				<span class="-screenReader">{{ multilingualLabel }}</span>
 			</template>
 			<template v-else>
-				{{ label }}
+				<div class="título_nivel_2">{{ label }}</div>
 			</template>
 			<span v-if="isRequired" class="pkpFormFieldLabel__required">
-				*
-				<span class="-screenReader">{{ __('common.required') }}</span>
+				<div>* Campo obligatorio</div>
 			</span>
-			<tooltip
-				v-if="isPrimaryLocale && tooltip"
-				aria-hidden="true"
-				:tooltip="tooltip"
-				label=""
-			/>
-			<span
-				v-if="isPrimaryLocale && tooltip"
-				class="-screenReader"
-				:id="describedByTooltipId"
-				v-html="tooltip"
-			/>
-			<help-button
-				v-if="isPrimaryLocale && helpTopic"
-				:id="describedByHelpId"
-				:topic="helpTopic"
-				:section="helpSection"
-				:label="__('help.help')"
-			/>
+		
+			
 		</legend>
 		<div
 			v-if="isPrimaryLocale && description"
-			class="pkpFormField__description pkpFormField--options__description"
+			style="margin-right:30px;"
 			v-html="description"
 			:id="describedByDescriptionId"
 		/>
@@ -44,12 +27,14 @@
 			:messages="errors"
 		/>
 		<input type="hidden" v-model="selectedValue" />
-		<div class="pkpFormField__control">
+			<br>
+		<div style="margin-right:30px;">
 			<label
 				v-for="option in localizedOptions"
 				:key="option.value"
-				class="pkpFormField--options__option"
-			>
+				class="parrafo_texto" 
+				style="margin-right:30px;"
+			><!-- pkpFormField--options__legend-->
 				<template v-if="!option.isInput">
 					<input
 						class="form-check-input"
@@ -61,11 +46,11 @@
 						:aria-invalid="errors && errors.length"
 						:disabled="option.disabled"
 					/>
-					{{ option.label }}
+					{{ option.label }}	<br>
 				</template>
 				<template v-else>
 					<input
-						class="pkpFormField--options__input"
+						class="form-check-input "
 						type="radio"
 						ref="inputRadio"
 						:name="localizedName"
@@ -73,6 +58,7 @@
 						:aria-invalid="errors && errors.length"
 						:disabled="option.disabled"
 						@change="selectInput"
+						style="margin-right:30px;"
 					/>
 					<span v-if="option.label">{{ option.label }}</span>
 					<input
@@ -86,6 +72,7 @@
 						@focus="selectInput"
 					/>
 				</template>
+					<br>
 			</label>
 			<multilingual-progress
 				v-if="isMultilingual && locales.length > 1"
@@ -93,6 +80,7 @@
 				:count="multilingualFieldsCompleted"
 				:total="locales.length"
 			/>
+			<br>
 		</div>
 	</fieldset>
 </template>
@@ -181,4 +169,44 @@ export default {
 	line-height: 1.8rem;
 	height: 1.8rem;
 }
+	.título_principal  {
+				font-family:cambersb;
+				font-size:34pt;
+				color:#174f77;
+			}
+			.título_nivel_1 {
+				font-family:cambersb;
+				font-size:27pt;
+				color:#445f77;
+			}
+			.título_nivel_2 {
+				font-family:cambersb;
+				font-size:18pt;
+				color:#737373;
+			}
+			.título_nivel_3 {
+				font-family:cambersb;
+				font-size:16pt;
+				color:#737373;
+			}
+			.aclaraciones_co {
+				font-family:camberuli;
+				font-size:8;
+				color:#ED0000;
+			}
+			.aclaraciones {
+				font-family:camberuli;
+				font-size:8;
+				color:#ED0000;
+			}
+			.campos_tablas {
+				font-family:camberlg;
+				font-size:16pt;
+				color:#fff;
+			}
+			.parrafo_texto {
+				font-family:camberlg;
+				font-size:12pt;
+				color:#000;
+			}
 </style>

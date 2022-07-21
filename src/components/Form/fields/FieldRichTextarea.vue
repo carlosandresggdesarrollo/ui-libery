@@ -5,6 +5,7 @@
 	>
 		<div class="pkpFormField__heading">
 			<form-field-label
+				class="título_nivel_2"
 				:controlId="controlId"
 				:label="label"
 				:localeLabel="localeLabel"
@@ -30,7 +31,9 @@
 				:topic="helpTopic"
 				:section="helpSection"
 				:label="__('help.help')"
-			/>
+			/> 
+		</div> 
+		<div style="margin-bottom:50px;">
 		</div>
 		<div
 			v-if="isPrimaryLocale && description"
@@ -299,6 +302,12 @@ export default {
 <style lang="less">
 @import '../../../styles/_import';
 
+
+.título_nivel_2 {
+	font-family:cambersb;
+	font-size:18pt;
+	color:#737373;
+}
 .pkpFormField--richTextarea__toolbar {
 	border-bottom: @bg-border;
 	min-height: 39px;

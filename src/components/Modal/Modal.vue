@@ -6,7 +6,7 @@
 			@opened="setFocusToRef('keyboardTrap')"
 			@closed="data => this.$emit('closed', data)"
 		>
-			<div class="modal__panel">
+			<div class=" container-sm">
 				<span tabindex="0" @focus="setFocusIn($refs.keyboardTrap, true)" />
 				<div tabindex="0" ref="keyboardTrap" class="modal__keyboardTrap">
 					<div class="modal__header">
@@ -18,12 +18,20 @@
 							<span class="-screenReader">{{ closeLabel }}</span>
 						</button>
 					</div>
-					<div class="modal__content">
-						<slot />
+					<div class="row">					
+						<div class="col-sm-12">
+							<div class="">
+								<slot />
+							</div>
+						</div>
 					</div>
-					<div v-if="!!$slots.footer" class="modal__footer">
-						<slot name="footer" />
-					</div>
+					<div class="row">					
+						<div class="col-sm-12">
+							<div v-if="!!$slots.footer" class="modal__footer">
+								<slot name="footer" />
+							</div>							
+						</div>
+					</div>					
 				</div>
 				<span tabindex="0" @focus="setFocusIn($refs.keyboardTrap)" />
 			</div>

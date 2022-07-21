@@ -3,29 +3,27 @@
 		<list-panel
 			:isSidebarVisible="isSidebarVisible"
 			:items="items"
-			class="listPanel--emailTemplates"
+			class=""
 		>
+			<div class="row" style="height:50px;">
+				<div class="col-sm-12">
+					<br> <br><br>
+				</div>
+			</div>
+				
 			<pkp-header slot="header">
-				<h2>{{ title }}</h2>
-				<spinner v-if="isLoading" />
-				<template slot="actions">
-					<search
-						:searchPhrase="searchPhrase"
-						@search-phrase-changed="setSearchPhrase"
-					/>
-					<pkp-button
-						:isActive="isSidebarVisible"
-						@click="isSidebarVisible = !isSidebarVisible"
-					>
-						<icon icon="filter" :inline="true" />
-						{{ __('common.filter') }}
-					</pkp-button>
-					<pkp-button @click="openAddTemplateModal">{{ addLabel }}</pkp-button>
-					<pkp-button :isWarnable="true" @click="openResetAllModal">
+				
+				<pkp-button @click="openAddTemplateModal">{{ addLabel }}</pkp-button>
+				<br>
+				<pkp-button :isWarnable="true" @click="openResetAllModal">
 						{{ resetAllLabel }}
-					</pkp-button>
-				</template>
+				</pkp-button>
 			</pkp-header>
+			<div class="row" style="height:50px;">
+				<div class="col-sm-12">
+					<br> <br><br>
+				</div>
+			</div>
 			<template slot="sidebar">
 				<pkp-header :isOneLine="false">
 					<h3>
@@ -96,7 +94,6 @@ import PkpFilter from '@/components/Filter/Filter.vue';
 import PkpForm from '@/components/Form/Form.vue';
 import PkpHeader from '@/components/Header/Header.vue';
 import Modal from '@/components/Modal/Modal.vue';
-import Search from '@/components/Search/Search.vue';
 import ajaxError from '@/mixins/ajaxError';
 import fetch from '@/mixins/fetch';
 import cloneDeep from 'clone-deep';
@@ -108,8 +105,7 @@ export default {
 		Modal,
 		PkpFilter,
 		PkpForm,
-		PkpHeader,
-		Search
+		PkpHeader
 	},
 	mixins: [ajaxError, fetch],
 	props: {

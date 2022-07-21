@@ -1,17 +1,21 @@
 <template>
-	<label :for="controlId" class="label">
-		<template v-if="localeLabel">
-			<span class="aria-hidden">{{ localeLabel }}</span>
-			<span class="-screenReader">{{ multilingualLabel }}</span>
-		</template>
-		<template v-else>
-			{{ label }}
-		</template>
-		<span v-if="isRequired" class="pkpFormFieldLabel__required">
-			<span class="aria-hidden">*</span>
-			<span class="-screenReader">{{ requiredLabel }}</span>
+	<label :for="controlId" class="">
+		<div><br></div>
+		<div class="título_nivel_2">
+			<template v-if="localeLabel">
+				<span class="título_nivel_2">{{ localeLabel }}</span>
+				<span class="título_nivel_2">{{ multilingualLabel }}</span>
+			</template>
+			<template v-else>
+				<div  class="titulo_nivel_2">{{ label }}</div>
+			</template>
+		</div>
+		<span v-if="isRequired" class="pkpFormFieldLabel__required">		
+			<span class="aclaraciones_co">* Campo obligatorio</span>
 		</span>
+		<div><br></div>
 	</label>
+	
 </template>
 
 <script>
@@ -37,7 +41,17 @@ export default {
 .pkpFormFieldLabel {
 	font-weight: @bold;
 }
-
+.aclaraciones_co {
+				font-family:camberuli;
+				font-size:8;
+				color:#ED0000;
+}
+.título_nivel_2 {
+	font-family:cambersb;
+	font-size:18pt;
+	color:#737373;
+}
+			
 .pkpFormFieldLabel__required {
 	color: @no;
 }

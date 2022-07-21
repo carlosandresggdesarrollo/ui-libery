@@ -1,7 +1,7 @@
 <template>
 	<div class="--reviewer" :class="currentlyAssigned ? '-isAssigned' : ''">
 		<div class=" row">
-			<div class="col-sm-6 ">
+			<div class="col-sm-4 ">
 				<div class="listPanel__itemTitle ">
 					<badge
 						v-if="item.reviewsActive && canSelect"
@@ -104,11 +104,11 @@
 
 			<div class="col-sm-6">
 				<div class="row">
-					<div class="col-sm-6">
+					<div class="col-sm-8">
 						<pkp-button
 							v-if="canSelect"
 							@click="select"
-							class=" form-control d-none d-sm-block"
+							class="btn btn-primary"
 						>
 							<template v-if="assignedToLastRound">
 								<span aria-hidden="true">{{ reassignLabel }}</span>
@@ -124,7 +124,7 @@
 							</template>
 						</pkp-button>
 					</div>
-					<div class="col-sm-6">
+					<div class="col-sm-4">
 						<expander
 							:isExpanded="isExpanded"
 							:itemName="item.fullName"

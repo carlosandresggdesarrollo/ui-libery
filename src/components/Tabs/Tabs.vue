@@ -1,36 +1,40 @@
 <template>
-	<nav class="nav justify-content-cente" :class="{'': isSideTabs}">
-		<div class="pkpTabs__buttons" role="tablist" :aria-label="label">
-			<button
-				v-for="tab in tabs"
-				:aria-selected="currentTab === tab.id"
-				:aria-controls="tab.id"
-				class="btn btn-outline-dark"
-				:id="tab.id + '-button'"
-				:key="tab.id"
-				:ref="'button' + tab.id"
-				role="tab"
-				:tabindex="currentTab === tab.id ? '' : -1"
-				@click="setCurrentTab(tab.id)"
-				@keydown.35.prevent="setLastTab"
-				@keydown.36.prevent="setFirstTab"
-				@keydown.left.exact.prevent="setPreviousTab"
-				@keydown.right.exact.prevent="setNextTab"
-			>
-				<template v-if="tab.icon">
-					<icon :icon="tab.icon"></icon>
-					<span class="-screenReader">{{ tab.label }}</span>
-				</template>
-				<template v-else>
-					{{ tab.label }}
-				</template>
-				<template v-if="tab.badge">
-					<badge>{{ tab.badge }}</badge>
-				</template>
-			</button>
-		</div>
-		<slot />
-	</nav>
+	<div>
+		<nav class="" :class="{'': isSideTabs}">
+			<div class="" role="tablist" :aria-label="label">
+				<button
+					v-for="tab in tabs"
+					:aria-selected="currentTab === tab.id"
+					:aria-controls="tab.id"
+					class="btn btn-outline-dark"
+					:id="tab.id + '-button'"
+					:key="tab.id"
+					:ref="'button' + tab.id"
+					role="tab"
+					:tabindex="currentTab === tab.id ? '' : -1"
+					@click="setCurrentTab(tab.id)"
+					@keydown.35.prevent="setLastTab"
+					@keydown.36.prevent="setFirstTab"
+					@keydown.left.exact.prevent="setPreviousTab"
+					@keydown.right.exact.prevent="setNextTab"
+				>
+					<template v-if="tab.icon">
+						<icon :icon="tab.icon"></icon>
+						<span class="-screenReader">{{ tab.label }}</span>
+					</template>
+					<template v-else>
+						{{ tab.label }}
+					</template>
+					<template v-if="tab.badge">
+						<badge>{{ tab.badge }}</badge>
+					</template>
+				</button>
+			</div>
+			<slot />
+		</nav>
+	<br><br>
+	</div>
+	
 </template>
 
 <script>

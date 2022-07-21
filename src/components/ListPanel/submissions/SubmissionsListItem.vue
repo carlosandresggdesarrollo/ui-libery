@@ -1,7 +1,7 @@
 <template>
 	<div class="container">
 		<div class="row ">
-			<div class="col-sm-4">
+			<div class="col-sm-6">
 				<div class="">Folio: {{ item.id }}</div>
 				<div class="listPanel__itemTitle">
 					<span v-if="currentUserIsReviewer">
@@ -68,7 +68,7 @@
 			</div>
 
 			<!-- Workflow stage information -->
-			<div v-if="!currentUserIsReviewer" class="col-sm-4">
+			<div v-if="!currentUserIsReviewer" class="col-sm-3">
 				<div class="row">
 					<div class="col-sm-6">
 						<center>
@@ -111,13 +111,13 @@
 			</div>
 
 			<!-- Review status -->
-			<template v-else class="col-sm-4">
+			<template v-else class="col-sm-3">
 				<div class="row">
 					<div class="col-sm-6">
 						<center>
 							<div
 								v-if="currentUserLatestReviewAssignment.reviewCancelled"
-								class="form-control"
+							
 							>
 								<icon icon="exclamation-triangle" :inline="true" />
 								{{ __('submission.list.reviewCancelled') }}
@@ -127,7 +127,7 @@
 					<div class="col-sm-6">
 						<div
 							v-if="currentUserLatestReviewAssignment.reviewComplete"
-							class="form-control"
+							
 						>
 							<icon icon="check" :inline="true" />
 							{{ __('submission.list.reviewComplete') }}
@@ -137,42 +137,52 @@
 			</template>
 
 			<!-- Actions -->
-			<div class="col-sm-4" style="margin-top:4px;">
+			<div class="col-sm-3" style="margin-top:4px;">
 				<div class="row">
 					<div class="col-sm-6">
 						<center>
-							<pkp-button element="a" :href="item.urlWorkflow">
-								<span aria-hidden="true">{{ __('common.view') }}</span>
-								<span v-if="currentUserIsReviewer" class="-screenReader">
-									{{
-										__('common.viewWithName', {
-											name: localizeSubmission(
-												currentPublication.fullTitle,
-												currentPublication.locale
-											)
-										})
-									}}
-								</span>
-								<span v-else class="-screenReader">
-									{{
-										__('common.viewWithName', {
-											name: currentPublication.authorsStringShort
-										})
-									}}
-								</span>
-							</pkp-button>
+							<div class="row">
+								<div class="col-sm-12">
+									<pkp-button element="a" :href="item.urlWorkflow">
+										<span aria-hidden="true">{{ __('common.view') }}</span>
+										<span v-if="currentUserIsReviewer" class="-screenReader">
+											{{
+												__('common.viewWithName', {
+													name: localizeSubmission(
+														currentPublication.fullTitle,
+														currentPublication.locale
+													)
+												})
+											}}
+										</span>
+										<span v-else class="-screenReader">
+											{{
+												__('common.viewWithName', {
+													name: currentPublication.authorsStringShort
+												})
+											}}
+										</span>
+									</pkp-button>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-12">
+									<pkp-button v-if="currentUserCanViewInfoCenter" @click="openInfoCenter">
+										Notas
+									</pkp-button>
+									<pkp-button
+										v-if="currentUserCanDelete"
+										:isWarnable="true"
+										@click="deleteSubmissionPrompt"
+									>
+										{{ __('common.delete') }}
+									</pkp-button>
+								</div>
+							</div>
 						</center>
 					</div>
 					<div class="col-sm-6">
-						<center>
-							<expander
-								v-if="!currentUserIsReviewer"
-								style="margin:6px;"
-								:isExpanded="isExpanded"
-								:itemName="currentPublication.authorsStringShort"
-								@toggle="isExpanded = !isExpanded"
-							/>
-						</center>
+					
 					</div>
 				</div>
 			</div>
@@ -232,7 +242,7 @@
 </template>
 
 <script>
-import Expander from '@/components/Expander/Expander.vue';
+//import Expander from '@/components/Expander/Expander.vue';
 import List from '@/components/List/List.vue';
 import ListItem from '@/components/List/ListItem.vue';
 import ajaxError from '@/mixins/ajaxError';
@@ -244,7 +254,7 @@ export default {
 	name: 'SubmissionsListItem',
 	mixins: [ajaxError, fetch, localizeSubmission, dialog],
 	components: {
-		Expander,
+		//Expander,
 		List,
 		ListItem
 	},

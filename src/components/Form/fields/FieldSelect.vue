@@ -2,6 +2,7 @@
 	<div class="pkpFormField pkpFormField--select">
 		<div class="pkpFormField__heading">
 			<form-field-label
+				class="titulo_nivel_2"
 				:controlId="controlId"
 				:label="label"
 				:localeLabel="localeLabel"
@@ -38,7 +39,7 @@
 			}"
 		>
 			<select
-				class="form-control"
+				class="form-select"
 				v-model="currentValue"
 				:id="controlId"
 				:name="localizedName"
@@ -93,6 +94,12 @@ export default {
 
 <style lang="less">
 @import '../../../styles/_import';
+
+.título_nivel_2 {
+	font-family:cambersb;
+	font-size:18pt;
+	color:#737373;
+}
 
 .pkpFormField--select__input {
 	width: 20em;
