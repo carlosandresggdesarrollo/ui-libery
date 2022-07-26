@@ -3,89 +3,103 @@
 		<!-- Successfully uploaded and saved submission files -->
 		<template v-if="item.fileId">
 			<div class="row">
-				<div class="col-sm-4">
-				
-						<a
-							class="listPanel__item--submissionFile__link"
-							:href="item.url"
-							:id="nameId"
-						>
-							<submission-files-file
-								:documentType="item.documentType"
-								:name="localize(item.name)"
-							/>
-						</a>
-					
-				</div>
-				<div class="col-sm-8">
+				<tr class="col-12">
 					<div class="row">
-						<div class="col-sm-4">
-							<badge
-								v-if="item.genre"
-								:is-primary="isPrimaryGenre"
-								class="listPanel--submissionFiles__itemGenre"
-							>
-								{{ item.genre.name }}
-							</badge>
+						<div class="col-6">
+							<td>
+								<!-- Nombre de archivo-->
+								<a class="l" :href="item.url" :id="nameId">
+									<submission-files-file
+										:documentType="item.documentType"
+										:name="localize(item.name)"
+									/>
+								</a>
+							</td>
 						</div>
-						<div class="col-sm-4">
-							<pkp-button
-								:id="editId"
-								:aria-describedby="nameId"
-								@click="$emit('edit', item)"
-							>
-								{{ __('common.edit') }}
-							</pkp-button>
+						<div class="col-3">
+							<td class="col-4">
+								<!-- Tipo de archivo-->
+								<badge
+									v-if="item.genre"
+									:is-primary="isPrimaryGenre"
+									class="listPanel--submissionFiles__itemGenre"
+								>
+									{{ item.genre.name }}
+								</badge>
+							</td>
 						</div>
-						<div class="col-sm-4">
-							<pkp-button
-								:is-warnable="true"
-								:aria-describedby="nameId"
-								@click="$emit('remove', item)"
-							>
-								{{ __('common.remove') }}
-							</pkp-button>
+						<div class="col-3">
+							<td class="col-4">
+								<a
+									style="width:50px;"
+									class=""
+									:id="editId"
+									:aria-describedby="nameId"
+									@click="$emit('edit', item)"
+								>
+									<img
+										class="img-fluid"
+										style="width:50px;height:50px;"
+										src="http://148.202.34.240:8008/app/seuomp/udg/Editar.png"
+									/>
+								</a>
+
+								<a
+									style="width:50px;"
+									class=""
+									:is-warnable="true"
+									:aria-describedby="nameId"
+									@click="$emit('remove', item)"
+								>
+									<img
+										class="img-fluid"
+										style="width:50px;height:50px;"
+										src="http://148.202.34.240:8008/app/seuomp/udg/Eliminar.png"
+									/>
+								</a>
+							</td>
 						</div>
+					</div>
+				</tr>
+				<div v-if="!item.genre" class="row">
+					<span role="alert">
+						<icon icon="exclamation-triangle" :inline="true" />
+						<span
+							:id="genrePromptId"
+							class="listPanel--submissionFiles__setGenreLabel"
+						>
+							{{ genrePromptLabel }}
+						</span>
+						<button
+							v-for="genre in primaryGenres"
+							:key="genre.id"
+							class="-linkButton listPanel--submissionFiles__setGenreButton"
+							:aria-describedby="genrePromptId + ' ' + nameId"
+							@click="setGenre(genre.id)"
+						>
+							{{ genre.name }}
+						</button>
+						<button
+							class="-linkButton listPanel--submissionFiles__setGenreButton"
+							:aria-describedby="genrePromptId + ' ' + nameId"
+							@click="$emit('edit', item)"
+						>
+							{{ otherLabel }}
+						</button>
+					</span>
+					<template v-if="isSavingGenreId">
+						<spinner class="listPanel--submissionFiles__genreSpinner" />
+						<span
+							class="-screenReader"
+							role="status"
+							aria-live="polite"
+							aria-atomic="true"
+						>
+							{{ status }}
+						</span>
+					</template>
 				</div>
 			</div>
-			<div v-if="!item.genre" class="row">
-				<span role="alert">
-					<icon icon="exclamation-triangle" :inline="true" />
-					<span
-						:id="genrePromptId"
-						class="listPanel--submissionFiles__setGenreLabel"
-					>
-						{{ genrePromptLabel }}
-					</span>
-					<button
-						v-for="genre in primaryGenres"
-						:key="genre.id"
-						class="-linkButton listPanel--submissionFiles__setGenreButton"
-						:aria-describedby="genrePromptId + ' ' + nameId"
-						@click="setGenre(genre.id)"
-					>
-						{{ genre.name }}
-					</button>
-					<button
-						class="-linkButton listPanel--submissionFiles__setGenreButton"
-						:aria-describedby="genrePromptId + ' ' + nameId"
-						@click="$emit('edit', item)"
-					>
-						{{ otherLabel }}
-					</button>
-				</span>
-				<template v-if="isSavingGenreId">
-					<spinner class="listPanel--submissionFiles__genreSpinner" />
-					<span
-						class="-screenReader"
-						role="status"
-						aria-live="polite"
-						aria-atomic="true"
-					>
-						{{ status }}
-					</span>
-				</template>
-			</div></div>
 		</template>
 
 		<!-- Uploads in progress not yet saved as submission files -->

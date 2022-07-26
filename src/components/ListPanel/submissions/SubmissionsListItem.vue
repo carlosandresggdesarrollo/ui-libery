@@ -1,241 +1,235 @@
 <template>
-	<div class="container">
-		<div class="row ">
-			<div class="col-sm-6">
-				<div class="">Folio: {{ item.id }}</div>
-				<div class="listPanel__itemTitle">
-					<span v-if="currentUserIsReviewer">
-						{{ __('submission.list.reviewAssignment') }}
-					</span>
-					<span v-else-if="currentPublication.authorsStringShort">
-						{{ currentPublication.authorsStringShort }}
-					</span>
-				</div>
-				<div class="listPanel__itemSubtitle">
-					{{
-						localizeSubmission(
-							currentPublication.fullTitle,
-							currentPublication.locale
-						)
-					}}
-				</div>
-
-				<!-- Review assignment information -->
-				<div
-					v-if="currentUserIsReviewer"
-					class="listPanel__item--submission__reviewDetails"
-				>
-					<span
-						v-if="currentUserLatestReviewAssignment.responsePending"
-						class="listPanel__item--submission__dueDate"
-					>
-						{{
-							__('submission.list.responseDue', {
-								date: currentUserLatestReviewAssignment.responseDue
-							})
-						}}
-					</span>
-					<span
-						v-if="currentUserLatestReviewAssignment.reviewPending"
-						class="listPanel__item--submission__dueDate"
-					>
-						{{
-							__('submission.list.reviewDue', {
-								date: currentUserLatestReviewAssignment.due
-							})
-						}}
-					</span>
-				</div>
-
-				<!-- Warnings and notices -->
-				<div
-					v-if="reviewerWorkflowLink"
-					class="listPanel__item--submission__notice"
-				>
-					<span v-html="reviewerWorkflowLink" />
-				</div>
-				<div v-else-if="notice" class="listPanel__item--submission__notice">
-					<icon icon="exclamation-triangle" :inline="true" />
-					{{ notice }}
-					<button
-						v-if="shouldAssignEditor"
-						class="-linkButton"
-						@click.stop.prevent="openAssignParticipant"
-					>
-						{{ __('submission.list.assignEditor') }}
-					</button>
-				</div>
-			</div>
-
-			<!-- Workflow stage information -->
-			<div v-if="!currentUserIsReviewer" class="col-sm-3">
+	<div class="container-sm">
+		<div class="row" id="en-historial">
+			<tr class="col-12">
 				<div class="row">
-					<div class="col-sm-6">
-						<center>
-							<div class="" aria-hidden="true">
-								<span v-if="isReviewStage">
-									<icon icon="user-o" :inline="true" />
-									{{ completedReviewsCount }}/{{
-										currentReviewAssignments.length
+					<div class="col-sm-1">
+						<td>
+							{{ item.id }}
+						</td>
+					</div>
+
+					<!-- ######################################-->
+					<div class="col-sm-2">
+						<td>
+							{{
+								localizeSubmission(
+									currentPublication.fullTitle,
+									currentPublication.locale
+								)
+							}}
+
+							<!-- Review assignment information -->
+							<div v-if="currentUserIsReviewer" class="">
+								<span
+									v-if="currentUserLatestReviewAssignment.responsePending"
+									class="listPanel__item--submission__dueDate"
+								>
+									{{
+										__('submission.list.responseDue', {
+											date: currentUserLatestReviewAssignment.responseDue
+										})
 									}}
 								</span>
-								<span v-if="activeStage.files.count">
-									<icon icon="file-text-o" :inline="true" />
-									{{ activeStage.files.count }}
-								</span>
-								<span v-if="openQueryCount">
-									<icon icon="comment-o" :inline="true" />
-									{{ openQueryCount }}
+								<span
+									v-if="currentUserLatestReviewAssignment.reviewPending"
+									class="listPanel__item--submission__dueDate"
+								>
+									{{
+										__('submission.list.reviewDue', {
+											date: currentUserLatestReviewAssignment.due
+										})
+									}}
 								</span>
 							</div>
-						</center>
-					</div>
-					<div class="col-sm-6">
-						<center>
-							<badge
-								style="margin:10px;"
-								class=" form-control--submission__stage"
-								:isButton="!isArchived"
-								:label="currentStageDescription"
-								:stage="isArchived ? '' : currentStage"
-								:isPrimary="isScheduled"
-								:isSuccess="isPublished"
-								:isWarnable="isDeclined"
-								@click="filterByStage(activeStage.id)"
-							>
-								{{ currentStageLabel }}
-							</badge>
-						</center>
-					</div>
-				</div>
-			</div>
 
-			<!-- Review status -->
-			<template v-else class="col-sm-3">
-				<div class="row">
-					<div class="col-sm-6">
-						<center>
+							<!-- Warnings and notices -->
 							<div
-								v-if="currentUserLatestReviewAssignment.reviewCancelled"
-							
+								v-if="reviewerWorkflowLink"
+								class="listPanel__item--submission__notice"
+							>
+								<span v-html="reviewerWorkflowLink" />
+							</div>
+							<div
+								v-else-if="notice"
+								class="listPanel__item--submission__notice"
 							>
 								<icon icon="exclamation-triangle" :inline="true" />
-								{{ __('submission.list.reviewCancelled') }}
+								{{ notice }}
+								<button
+									v-if="shouldAssignEditor"
+									class="-linkButton"
+									@click.stop.prevent="openAssignParticipant"
+								>
+									{{ __('submission.list.assignEditor') }}
+								</button>
 							</div>
-						</center>
+						</td>
 					</div>
-					<div class="col-sm-6">
-						<div
-							v-if="currentUserLatestReviewAssignment.reviewComplete"
-							
-						>
-							<icon icon="check" :inline="true" />
-							{{ __('submission.list.reviewComplete') }}
-						</div>
+					<!-- ######################################-->
+					<!-- Información de la etapa del flujo de trabajo
+									<td v-if="!currentUserIsReviewer">		
+										<span v-if="isReviewStage">
+											<icon icon="user-o" :inline="true" />
+											{{ completedReviewsCount }}/{{currentReviewAssignments.length}}
+										</span>
+									</td>-->
+					<!-- ######################################-->
+					<div class="col-sm-2">
+						<td>Monografía</td>
 					</div>
-				</div>
-			</template>
+					<div class="col-sm-2">
+						<td v-if="!currentUserIsReviewer">
+							<!--Esstatus-->
+							{{ currentStageLabel }}
+						</td>
 
-			<!-- Actions -->
-			<div class="col-sm-3" style="margin-top:4px;">
-				<div class="row">
-					<div class="col-sm-6">
-						<center>
-							<div class="row">
-								<div class="col-sm-12">
-									<pkp-button element="a" :href="item.urlWorkflow">
-										<span aria-hidden="true">{{ __('common.view') }}</span>
-										<span v-if="currentUserIsReviewer" class="-screenReader">
-											{{
-												__('common.viewWithName', {
-													name: localizeSubmission(
-														currentPublication.fullTitle,
-														currentPublication.locale
-													)
-												})
-											}}
-										</span>
-										<span v-else class="-screenReader">
-											{{
-												__('common.viewWithName', {
-													name: currentPublication.authorsStringShort
-												})
-											}}
-										</span>
-									</pkp-button>
+						<!-- Review status -->
+						<td v-else>
+							<template>
+								<div v-if="currentUserLatestReviewAssignment.reviewCancelled">
+									<icon icon="exclamation-triangle" :inline="true" />
+									{{ __('submission.list.reviewCancelled') }}
 								</div>
+
+								<div v-if="currentUserLatestReviewAssignment.reviewComplete">
+									<icon icon="check" :inline="true" />
+									{{ __('submission.list.reviewComplete') }}
+								</div>
+							</template>
+						</td>
+					</div>
+					<!-- ######################################-->
+					<div class="col-sm-2">
+						<td>
+							<div v-if="currentStageLabel === 'Publicado'">
+								{{
+									__('common.lastActivity', {
+										date: localizeDate(item.dateLastActivity)
+									})
+								}}
 							</div>
-							<div class="row">
-								<div class="col-sm-12">
-									<pkp-button v-if="currentUserCanViewInfoCenter" @click="openInfoCenter">
-										Notas
-									</pkp-button>
-									<pkp-button
-										v-if="currentUserCanDelete"
-										:isWarnable="true"
-										@click="deleteSubmissionPrompt"
+							<div v-else></div>
+						</td>
+					</div>
+
+					<!-- ######################################-->
+					<div class="col-sm-1">
+						<td>
+							<center>
+								<div v-if="currentStageLabel === 'Publicado'">
+									<a
+										href="http://148.202.34.240:8008/app/seuomp/udg/constancia.pdf"
+										id="en-historial"
+										class="en-historial"
 									>
-										{{ __('common.delete') }}
-									</pkp-button>
+										<img
+											class="img-fluid"
+											style="width:40px;height:40px;"
+											src="http://148.202.34.240:8008/app/seuomp/udg/Constancia.png"
+										/>
+									</a>
 								</div>
-							</div>
-						</center>
+								<div v-else></div>
+							</center>
+						</td>
 					</div>
-					<div class="col-sm-6">
-					
+					<!-- ######################################-->
+					<!-- Actions -->
+					<div class="col-sm-2">
+						<td style="margin-top:4px;">
+							<center>
+								<a
+									element="a"
+									:href="item.urlWorkflow"
+									style="margin-right:12px;"
+								>
+									<img
+										class="img-fluid"
+										style="width:40px;height:40px;"
+										src="http://148.202.34.240:8008/app/seuomp/udg/Ver.png"
+									/>
+								</a>
+								<a
+									v-if="currentUserCanViewInfoCenter"
+									@click="openInfoCenter"
+									style="margin-right:12px;"
+								>
+									<img
+										class="img-fluid"
+										style="width:40px;height:40px;"
+										src="http://148.202.34.240:8008/app/seuomp/udg/Comentarios.png"
+									/>
+								</a>
+								<a
+									style="margin-right:12px;"
+									v-if="currentUserCanDelete"
+									:isWarnable="true"
+									@click="deleteSubmissionPrompt"
+								>
+									<img
+										class="img-fluid"
+										style="width:40px;height:40px;"
+										src="http://148.202.34.240:8008/app/seuomp/udg/Eliminar.png"
+									/>
+								</a>
+							</center>
+						</td>
 					</div>
 				</div>
-			</div>
-		</div>
-
-		<!-- Expanded panel -->
-		<div v-if="isExpanded" class="">
-			<list>
-				<list-item v-if="isReviewStage">
-					<template slot="value">
-						<icon icon="user-o" :inline="true" />
-						{{ completedReviewsCount }}/{{ currentReviewAssignments.length }}
-					</template>
-					{{ __('submission.list.reviewsCompleted') }}
-				</list-item>
-				<list-item v-if="!isSubmissionStage">
-					<template slot="value">
-						<icon icon="file-text-o" :inline="true" />
-						{{ activeStage.files.count }}
-					</template>
-					{{ activeStageFilesLabel }}
-				</list-item>
-				<list-item v-if="!item.submissionProgress">
-					<template slot="value">
-						<icon icon="comment-o" :inline="true" />
-						{{ openQueryCount }}
-					</template>
-					{{ __('submission.list.discussions') }}
-				</list-item>
-				<list-item v-if="dualWorkflowLinks">
-					<span v-html="dualWorkflowLinks" />
-				</list-item>
-				<list-item>
-					<span>
-						{{
-							__('common.lastActivity', {
-								date: localizeDate(item.dateLastActivity)
-							})
-						}}
-					</span>
-				</list-item>
-			</list>
-			<div class="listPanel__itemExpandedActions">
-				<pkp-button v-if="currentUserCanViewInfoCenter" @click="openInfoCenter">
-					{{ __('submission.list.infoCenter') }}
-				</pkp-button>
-				<pkp-button
-					v-if="currentUserCanDelete"
-					:isWarnable="true"
-					@click="deleteSubmissionPrompt"
-				>
-					{{ __('common.delete') }}
-				</pkp-button>
+			</tr>
+			<!-- Expanded panel -->
+			<div id="en-historial" style="display:none;">
+				<list>
+					<list-item v-if="isReviewStage">
+						<template slot="value">
+							<icon icon="user-o" :inline="true" />
+							{{ completedReviewsCount }}/{{ currentReviewAssignments.length }}
+						</template>
+						{{ __('submission.list.reviewsCompleted') }}
+					</list-item>
+					<list-item v-if="!isSubmissionStage">
+						<template slot="value">
+							<icon icon="file-text-o" :inline="true" />
+							{{ activeStage.files.count }}
+						</template>
+						{{ activeStageFilesLabel }}
+					</list-item>
+					<list-item v-if="!item.submissionProgress">
+						<template slot="value">
+							<icon icon="comment-o" :inline="true" />
+							{{ openQueryCount }}
+						</template>
+						{{ __('submission.list.discussions') }}
+					</list-item>
+					<list-item v-if="dualWorkflowLinks">
+						<span v-html="dualWorkflowLinks" />
+					</list-item>
+					<list-item>
+						<span>
+							{{
+								__('common.lastActivity', {
+									date: localizeDate(item.dateLastActivity)
+								})
+							}}
+						</span>
+					</list-item>
+				</list>
+				<div class="listPanel__itemExpandedActions">
+					<pkp-button
+						v-if="currentUserCanViewInfoCenter"
+						@click="openInfoCenter"
+					>
+						{{ __('submission.list.infoCenter') }}
+					</pkp-button>
+					<pkp-button
+						v-if="currentUserCanDelete"
+						:isWarnable="true"
+						@click="deleteSubmissionPrompt"
+					>
+						{{ __('common.delete') }}
+					</pkp-button>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -12,16 +12,20 @@
 			</template>
 
 			<template v-slot:item="{item}">
-				<slot name="item" :item="item">
-					<submissions-list-item
-						:key="item.id"
-						:item="item"
-						:apiUrl="apiUrl"
-						:infoUrl="infoUrl"
-						:assignParticipantUrl="assignParticipantUrl"
-						@addFilter="addFilter"
-					/>
-				</slot>
+				<table>
+					<tbody>
+						<slot name="item" :item="item">
+							<submissions-list-item
+								:key="item.id"
+								:item="item"
+								:apiUrl="apiUrl"
+								:infoUrl="infoUrl"
+								:assignParticipantUrl="assignParticipantUrl"
+								@addFilter="addFilter"
+							/>
+						</slot>
+					</tbody>
+				</table>
 			</template>
 
 			<pagination

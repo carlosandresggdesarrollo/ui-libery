@@ -1,37 +1,69 @@
 <template>
-	<div class="submissionFilesListPanel">
+	<div class="">
+		<link
+			href="http://148.202.34.240:8008/app/seuomp/udg_resources/css/tablas.css"
+			rel="stylesheet"
+		/>
 		<list-panel :items="items" class="listPanel--submissionFiles">
 			<pkp-header slot="header">
 				<h2>{{ title }}</h2>
 				<template slot="actions">
-					<pkp-button ref="addFileButton" @click="openFileBrowser">
-						{{ addFileLabel }}
-					</pkp-button>
+					<div class="row">
+						<div class="col-10"></div>
+						<div class="col-2">
+							<a ref="addFileButton" @click="openFileBrowser">
+								<img
+									class="img-fluid"
+									style="width:150px;height:50px;"
+									src="http://148.202.34.240:8008/app/seuomp/udg/Archivo.png"
+								/>
+							</a>
+						</div>
+					</div>
+					<br />
+					<div class="row">
+						<div class="col-sm-12">
+							<table>
+								<thead>
+									<tr>
+										<th colspan="2">Archivo</th>
+										<th style="border-left: #fff 1px solid;">
+											Tipo de archivo
+										</th>
+									</tr>
+								</thead>
+								<tbody></tbody>
+							</table>
+						</div>
+					</div>
 				</template>
 			</pkp-header>
 
 			<template slot="itemsEmpty">
 				{{ emptyLabel }}
-				
 			</template>
 
 			<template v-slot:item="{item}">
-				<slot name="item" :item="item">
-					<submission-files-list-item
-						:apiUrl="apiUrl"
-						:cancelUploadLabel="cancelUploadLabel"
-						:genrePromptLabel="genrePromptLabel"
-						:fileStage="fileStage"
-						:genres="genres"
-						:item="item"
-						:otherLabel="otherLabel"
-						:stageId="stageId"
-						@cancel="cancelUpload"
-						@edit="edit"
-						@remove="remove"
-						@update="updateItem"
-					/>
-				</slot>
+				<table>
+					<tbody>
+						<slot name="" :item="item">
+							<submission-files-list-item
+								:apiUrl="apiUrl"
+								:cancelUploadLabel="cancelUploadLabel"
+								:genrePromptLabel="genrePromptLabel"
+								:fileStage="fileStage"
+								:genres="genres"
+								:item="item"
+								:otherLabel="otherLabel"
+								:stageId="stageId"
+								@cancel="cancelUpload"
+								@edit="edit"
+								@remove="remove"
+								@update="updateItem"
+							/>
+						</slot>
+					</tbody>
+				</table>
 			</template>
 		</list-panel>
 		<file-uploader

@@ -1,5 +1,6 @@
 <template>
-	<li class="list-group-item" :class="classes">
+	<li :class="classes">
+		<!-- class="list-group-item" -->
 		<span v-if="hasValueSlot" class="label">
 			<slot name="value"></slot>
 		</span>

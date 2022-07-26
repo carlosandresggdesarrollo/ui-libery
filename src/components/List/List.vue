@@ -1,5 +1,6 @@
 <template>
-	<ul class="list-group">
+	<ul>
+		<!-- class="list-group" -->
 		<slot />
 	</ul>
 </template>
