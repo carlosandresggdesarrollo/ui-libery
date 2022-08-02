@@ -119,8 +119,8 @@
 							<center>
 								<div v-if="currentStageLabel === 'Publicado'">
 									<a
-										href="http://148.202.34.240:8008/app/seuomp/udg/constancia.pdf"
-										id="en-historial"
+										:href="'http://148.202.34.240:8008/app/seuomp/udg/constancias/Constancia-Publicado.php?folio='+item.id"
+										:id="item.id"
 										class="en-historial"
 									>
 										<img

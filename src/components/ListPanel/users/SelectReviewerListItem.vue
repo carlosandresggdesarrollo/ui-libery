@@ -1,5 +1,5 @@
 <template>
-	<div class="--reviewer" :class="currentlyAssigned ? '-isAssigned' : ''">
+	<div class="--reviewer" :class="currentlyAssigned ? '-isAssigned' : ''" :id="item.fullName" style="display:none;">
 		<div class=" row">
 			<div class="col-sm-4 ">
 				<div class="listPanel__itemTitle ">
