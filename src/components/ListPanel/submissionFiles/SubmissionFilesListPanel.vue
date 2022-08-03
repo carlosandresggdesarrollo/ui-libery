@@ -8,27 +8,37 @@
 			<pkp-header slot="header">
 				<h2>{{ title }}</h2>
 				<template slot="actions">
-					<div class="row">
-						<div class="col-10"></div>
-						<div class="col-2">
+					<div class="row g-0">
+						<div class="col-9"></div>
+						<div
+							style="display:inline-block;margin:auto; text-align:right;"
+							class="col-2"
+						>
 							<a ref="addFileButton" @click="openFileBrowser">
 								<img
 									class="img-fluid"
-									style="width:150px;height:50px;"
-									src="http://148.202.34.240:8008/app/seuomp/udg/Archivo.png"
+									style="width:20%;height:40%;display:block;margin-left:110px;"
+									src="http://148.202.34.240:8008/app/seuomp/udg/AñadirSimple.png"
 								/>
 							</a>
+						</div>
+						<div class="col-1">
+							<p
+								style="display:block;margin:auto;font-weight:bold;color:#174F77"
+							>
+								Archivo
+							</p>
 						</div>
 					</div>
 					<br />
 					<div class="row">
 						<div class="col-sm-12">
-							<table>
+							<table class="table">
 								<thead>
 									<tr>
-										<th colspan="2">Archivo</th>
-										<th style="border-left: #fff 1px solid;">
-											Tipo de archivo
+										<th colspan="2" style="text-align:center;">ARCHIVO</th>
+										<th style="border-left: #fff 1px solid; text-align:center;">
+											TIPO DE OBRA *
 										</th>
 									</tr>
 								</thead>

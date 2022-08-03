@@ -39,7 +39,7 @@
 								>
 									<img
 										class="img-fluid"
-										style="width:50px;height:50px;"
+										style="width:25px;height:25px;"
 										src="http://148.202.34.240:8008/app/seuomp/udg/Editar.png"
 									/>
 								</a>
@@ -53,7 +53,7 @@
 								>
 									<img
 										class="img-fluid"
-										style="width:50px;height:50px;"
+										style="width:25px;height:25px;"
 										src="http://148.202.34.240:8008/app/seuomp/udg/Eliminar.png"
 									/>
 								</a>
